@@ -6,7 +6,7 @@
 <div class="categories-shop">
     <div class="container">
         <div class="row" dir="rtl">
-            {% for product in Model_one %}
+            {% for product in category %}
             <div class="col-lg-4 col-md-4 col-sm-6 mt-2 ">
                 <section class="neumorphism" style="background-color: white;">
 
@@ -64,21 +64,6 @@
         </div>
     </div>
 </div>
-<nav aria-label="Page navigation example">
-    <ul class="pagination justify-content-center">
-        <li class="page-item disabled">
-            {% if page_obj.has_previous %}
-            <a class="page-link" href="{% url 'shop:product_list' page_obj.previos_page_number %}" tabindex="-1">Previous</a> {% endif %}
-        </li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item">
-            {% if page_obj.has_next %}
-            <a class="page-link" href="{% url 'shop:product_list' page_obj.next_page_number %}">Next</a> {% endif %}
-        </li>
-    </ul>
-</nav>
 
 <div class="container">
     <div class="row justify-content-evenly">
