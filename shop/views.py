@@ -10,24 +10,21 @@ from django.core.paginator import Paginator , EmptyPage , PageNotAnInteger
 
 
 
-def product_list(request,page=1):
-		Model_one = Product.objects.all()
-		paginator = Paginator(Model_one, 6)
-		page_number = request.GET.get('page')
-		page_obj = paginator.get_page(page_number)
 
-		Model_two = Product.objects.filter(pishnahad=True)
-		paginator = Paginator(Model_two, 3)
-		page = request.GET.get('page2')
-		try:
-			Model_two = paginator.page(page)
-		except PageNotAnInteger:
-			Model_two = paginator.page(1)
-		except EmptyPage:
-			Model_two = paginator.page(paginator.num_pages)
 
-		context = {'page_obj': page_obj, 'Model_two': Model_two}
-		return render(request, 'product/home.html', context)
+
+class ProductList(ListView):
+	queryset = Product.objects.all()
+	template_name = 'product/home.html'
+	paginate_by = 6
+	def get_context_data(self , **kwargs):
+		context = super().get_context_data(**kwargs)
+		context['offers'] = Product.objects.filter(pishnahad=True).order_by('?')[:3]
+		return context
+
+
+
+
 
 
 

@@ -143,38 +143,7 @@
     <!-- Start Categories  -->
     {% block content %} {% endblock %}
     <!-- End Blog  -->
-    <div class="latest-blog">
-        <div class="container">
-
-            <div class="row">
-                {% for pish in Model_two %}
-
-                <div class="col-md-12 col-lg-3 col-xl-3  mt-3 mr-2">
-                    <div class="card " style="width: 18rem;">
-                        <img src="{{pish.image.url}}" class="card-img-top" alt="..." style="height: 150px;">
-                        <div class="card-body">
-                            <h5 class="card-title">{{pish.name}}</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <div class="d-flex justify-content-between align-items-center pb-2 mb-1">
-
-                                <button type="button" class="btn btn-dark rounded-circle"><i class="fas fa-eye fs-5"></i></button>
-                                <button type="button" class="btn btn-success rounded-circle"><i class="fas fa-shopping-cart fs-5"></i></button>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {% endfor %}
-                <div class="col-lg-2 col-md-12 mt-3">
-                    <img src="{% static 'product/images/pishnahad.png' %}" style="height: 400px">
-                    <div class="text-center">
-                        <button type="button" class="btn btn-dark mt-2" style="background-color: rgba(51,51,51,1);"><i class="fas fa-chevron-left"></i> مشاهده همه</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
+    
 
 
     <!-- Start Footer  -->
