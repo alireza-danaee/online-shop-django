@@ -6,7 +6,7 @@
 <div class="categories-shop">
     <div class="container">
         <div class="row" dir="rtl">
-            {% for product in category %}
+            {% for product in object_list %}
             <div class="col-lg-4 col-md-4 col-sm-6 mt-2 ">
                 <section class="neumorphism" style="background-color: white;">
 
@@ -67,14 +67,19 @@
 
 <div class="container">
     <div class="row justify-content-evenly">
+        <a href="http://localhost:8000/category/mouse">
         <div class="col-lg-5 col-md-8 card-box-rounded mt-3" style="background-color: #E0B0FF;">
             <div class="col-6 mt-2" style="float: right;">
                 <img src="{% static 'product/images/box-1.png' %}" style="height: 150px;width: 100%; margin-top: 5px;">
             </div>
+            
             <div class="col-6 text-center box-card-ghab" style="background-color: #E0B0FF;">
-                <div style="font-size: 24px;">انواع موس </div>
+                <div style="font-size: 24px;">انواع موس</div>
             </div>
+        </a>
         </div>
+        <a href="http://localhost:8000/category/keyboard">
+        
         <div class="col-lg-5 col-md-8 card-box-rounded mt-3" style="background-color: #B3FFB0;margin-left: auto;">
             <div class="col-6 mt-2" style="float: right;">
                 <img src="{% static 'product/images/box-2.png' %}" style="height: 150px;width: 100%; margin-top: 5px;">
@@ -82,7 +87,9 @@
             <div class="col-6 text-center box-card-ghab" style="background-color:#B3FFB0;">
                 <div style="font-size: 24px;">انواع کیبورد</div>
             </div>
+        </a>
         </div>
+        <a href="http://localhost:8000/category/mrofon">
         <div class="col-lg-5 col-md-8 card-box-rounded mt-3 " style="background-color: #7AC8FF;">
             <div class="col-6 mt-2" style="float: right;">
                 <img src="{% static 'product/images/box-3.png' %}" style="height: 150px;width: 100%; margin-top: 5px;">
@@ -90,7 +97,9 @@
             <div class="col-6 text-center box-card-ghab" style="background-color: #7AC8FF;">
                 <div style="font-size: 24px;">انواع میکروفون </div>
             </div>
+        </a>
         </div>
+        <a href="http://localhost:8000/category/sandali">
         <div class="col-lg-5 col-md-8 card-box-rounded mt-3 " style="background-color: #DC785A;margin-left: auto;">
             <div class="col-6 mt-2" style="float: right;">
                 <img src="{% static 'product/images/box-4.png' %}" style="height: 150px;width: 100%; margin-top: 5px;">
@@ -98,7 +107,9 @@
             <div class="col-6 text-center box-card-ghab" style="background-color: #DC785A;">
                 <div style="font-size: 24px;">انواع صندلی </div>
             </div>
+        </a>
         </div>
+        
 
     </div>
 </div>
@@ -130,6 +141,38 @@
 </div>
 
 <!-- Start Blog  -->
+<div class="latest-blog">
+    <div class="container">
+
+        <div class="row">
+            {% for pish in offers %}
+
+            <div class="col-md-12 col-lg-3 col-xl-3  mt-3 mr-2">
+                <div class="card " style="width: 18rem;">
+                    <img src="{{pish.image.url}}" class="card-img-top" alt="..." style="height: 150px;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{pish.name}}</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <div class="d-flex justify-content-between align-items-center pb-2 mb-1">
+
+                            <button type="button" class="btn btn-dark rounded-circle"><i class="fas fa-eye fs-5"></i></button>
+                            <button type="button" class="btn btn-success rounded-circle"><i class="fas fa-shopping-cart fs-5"></i></button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            <div class="col-lg-2 col-md-12 mt-3">
+                <img src="{% static 'product/images/pishnahad.png' %}" style="height: 330px">
+                <div class="text-center">
+                    <button type="button" class="btn btn-dark mt-2" style="background-color: rgba(51,51,51,1);"><i class="fas fa-chevron-left"></i> مشاهده همه</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
 
 
 

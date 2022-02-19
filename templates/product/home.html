@@ -68,28 +68,31 @@
     <ul class="pagination justify-content-center">
         <li class="page-item">
             {% if page_obj.has_previous %}
-            <a class="page-link" href="{% url 'shop:product_list' page_obj.previous_page_number %}" >Previous</a> {% endif %}
+            <a class="page-link" href="{% url 'shop:product_list' page_obj.previous_page_number %}" ><i class="fa fa-angle-left" aria-hidden="true"></i> صفحه قبلی</a> {% endif %}
         </li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
         <li class="page-item">
             {% if page_obj.has_next %}
-            <a class="page-link" href="{% url 'shop:product_list' page_obj.next_page_number %}">Next</a> {% endif %}
+            <a class="page-link" href="{% url 'shop:product_list' page_obj.next_page_number %}">صفحه بعدی <i class="fa fa-angle-right" aria-hidden="true"></i></a> {% endif %}
         </li>
     </ul>
 </nav>
 
+
 <div class="container">
     <div class="row justify-content-evenly">
+        <a href="http://localhost:8000/category/mouse">
         <div class="col-lg-5 col-md-8 card-box-rounded mt-3" style="background-color: #E0B0FF;">
             <div class="col-6 mt-2" style="float: right;">
                 <img src="{% static 'product/images/box-1.png' %}" style="height: 150px;width: 100%; margin-top: 5px;">
             </div>
+            
             <div class="col-6 text-center box-card-ghab" style="background-color: #E0B0FF;">
-                <div style="font-size: 24px;">انواع موس </div>
+                <div style="font-size: 24px;">انواع موس</div>
             </div>
+        </a>
         </div>
+        <a href="http://localhost:8000/category/keyboard">
+        
         <div class="col-lg-5 col-md-8 card-box-rounded mt-3" style="background-color: #B3FFB0;margin-left: auto;">
             <div class="col-6 mt-2" style="float: right;">
                 <img src="{% static 'product/images/box-2.png' %}" style="height: 150px;width: 100%; margin-top: 5px;">
@@ -97,7 +100,9 @@
             <div class="col-6 text-center box-card-ghab" style="background-color:#B3FFB0;">
                 <div style="font-size: 24px;">انواع کیبورد</div>
             </div>
+        </a>
         </div>
+        <a href="http://localhost:8000/category/mrofon">
         <div class="col-lg-5 col-md-8 card-box-rounded mt-3 " style="background-color: #7AC8FF;">
             <div class="col-6 mt-2" style="float: right;">
                 <img src="{% static 'product/images/box-3.png' %}" style="height: 150px;width: 100%; margin-top: 5px;">
@@ -105,7 +110,9 @@
             <div class="col-6 text-center box-card-ghab" style="background-color: #7AC8FF;">
                 <div style="font-size: 24px;">انواع میکروفون </div>
             </div>
+        </a>
         </div>
+        <a href="http://localhost:8000/category/sandali">
         <div class="col-lg-5 col-md-8 card-box-rounded mt-3 " style="background-color: #DC785A;margin-left: auto;">
             <div class="col-6 mt-2" style="float: right;">
                 <img src="{% static 'product/images/box-4.png' %}" style="height: 150px;width: 100%; margin-top: 5px;">
@@ -113,7 +120,9 @@
             <div class="col-6 text-center box-card-ghab" style="background-color: #DC785A;">
                 <div style="font-size: 24px;">انواع صندلی </div>
             </div>
+        </a>
         </div>
+        
 
     </div>
 </div>
@@ -168,9 +177,11 @@
             </div>
             {% endfor %}
             <div class="col-lg-2 col-md-12 mt-3">
-                <img src="{% static 'product/images/pishnahad.png' %}" style="height: 400px">
+                <img src="{% static 'product/images/pishnahad.png' %}" style="height: 330px">
                 <div class="text-center">
+                    <a href="{% url 'shop:offer_list' %}">
                     <button type="button" class="btn btn-dark mt-2" style="background-color: rgba(51,51,51,1);"><i class="fas fa-chevron-left"></i> مشاهده همه</button>
+                </a>
                 </div>
             </div>
         </div>
