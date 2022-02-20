@@ -26,6 +26,7 @@ class ProductList(ListView):
 
 
 class ProductDetail(DetailView):
+	template_name = 'product/detail.html'
 	def get_object(self):
 		slug = self.kwargs.get('slug')
 		product = get_object_or_404(Product.objects.all() , slug=slug)
