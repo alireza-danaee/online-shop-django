@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'account.apps.AccountConfig',
     'shop.apps.ShopConfig',
+    'django.contrib.humanize',
 ]
 
 MIDDLEWARE = [
@@ -134,3 +135,5 @@ MEDIA_ROOT = BASE_DIR / 'media'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'account.User'
+USE_THOUSAND_SEPARATOR = True
+NUMBER_GROUPING=3
