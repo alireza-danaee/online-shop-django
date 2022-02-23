@@ -1,4 +1,5 @@
 {% load static %}
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-default bootsnav">
     <div class="container">
         <!-- Start Header Navigation -->
@@ -14,9 +15,17 @@
         <div class="collapse navbar-collapse" id="navbar-menu">
             <ul dir="rtl" style="margin-right: auto;" class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
                 <li class="nav-item active"><a class="nav-link" href="{% url 'shop:product_list' %}">خانه</a></li>
-                {% for cat in category %}
-                <li class="nav-item"><a class="nav-link" href="{% url 'shop:category_list' cat.slug %}">{{cat.name}}</a></li>
-                {% endfor %}
+                <li class="dropdown">
+                    <a href="#" class="nav-link dropdown-toggle " data-toggle="dropdown">محصولات </a>
+                    <ul class="dropdown-menu">
+                        {% for cat in category %}
+                        <li><a href="{% url 'shop:category_list' cat.slug %}">{{cat.name}}</a></li>
+                        
+                        {% endfor %}
+                    </ul>
+                </li>
+                <li class="nav-item active"><a class="nav-link" href="#">درباره ما</a></li>
+                <li class="nav-item active"><a class="nav-link" href="#">ارتباط با ما</a></li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
@@ -24,12 +33,14 @@
         <!-- Start Atribute Navigation -->
         <div class="attr-nav">
             <ul>
-                <li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
-                <li class="side-menu">
-                    <a href="#">
-                        <i class="fa fa-shopping-bag"></i>
-                        <span class="badge">3</span>
-                        <p>سبدخرید</p>
+                
+                <li class="nav-item">
+                    <a href="{% url 'cart:cart_detail' %}" >
+                        <i class="fa fa-shopping-cart"></i>
+                        
+                        <span class="badge bg-secondary">{{ request.session.cart|length }}</span>
+                        
+                        
                     </a>
                 </li>
             </ul>

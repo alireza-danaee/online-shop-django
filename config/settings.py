@@ -39,8 +39,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'account.apps.AccountConfig',
     'shop.apps.ShopConfig',
+    'cart.apps.CartConfig',
     'django.contrib.humanize',
+    'widget_tweaks',
 ]
+
+
+CART_SESSION_ID = 'cart'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -69,6 +74,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 STATICFILES_DIRS = [
     BASE_DIR / "static",

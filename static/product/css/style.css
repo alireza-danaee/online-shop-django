@@ -1518,7 +1518,7 @@
 }
 /*------------------------------------------------------------------ All Pages -------------------------------------------------------------------*/
  .all-title-box{
-     background: url("../images/all-bg-title.jpg") no-repeat center center;
+     background: url("../../../media/products/2022/02/16/keyboard.jpeg") no-repeat center center;
      -webkit-background-size: cover;
      -moz-background-size: cover;
      -ms-background-size: cover;
@@ -2645,6 +2645,12 @@
 
 .card-box-rounded {
     border-radius: 16px;
+}
+
+
+
+.class_quantity_1 {
+    width:50px !important;
 }
 
 

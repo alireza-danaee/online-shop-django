@@ -13,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Site Metas -->
-    <title>Hamdan</title>
+    <title>{% block title %} {% endblock %}</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -82,6 +82,7 @@
     <header class="main-header">
         <!-- Start Navigation -->
         {% category_navbar %}
+        
         <!-- End Navigation -->
     </header>
     <!-- End Main Top -->
@@ -98,55 +99,13 @@
     </div> -->
     <!-- End Top Search -->
 
-    <!-- Start Slider -->
-    <div id="slides-shop" class="cover-slides slide-size">
-        <ul class="slides-container">
-            <li class="text-center">
-                <img src="{% static 'product/images/card-1.webp' %}" alt="">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h1 class="m-b-20"><strong>خوش آمدید به <br> مگاگیم</strong></h1>
-                            <p class="m-b-40">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است </p>
-                            <p><a class="btn hvr-hover border-ra" href="#">Shop New</a></p>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li class="text-center">
-                <img src="{% static 'product/images/card-2.webp' %}" alt="">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h1 class="m-b-20"><strong>خوش آمدید به <br> مگاگیم</strong></h1>
-                            <p class="m-b-40">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است </p>
-                            <p><a class="btn hvr-hover border-ra" href="#">Shop New</a></p>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li class="text-center">
-                <img src="{% static 'product/images/card-3.webp' %}" alt="">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h1 class="m-b-20"><strong>خوش آمدید به <br> مگاگیم</strong></h1>
-                            <p class="m-b-40">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است </p>
-                            <p class="rounded-2"><a class="btn hvr-hover border-ra" href="#">Shop New</a></p>
-                        </div>
-                    </div>
-                </div>
-            </li>
-        </ul>
-        <!-- <div class="slides-navigation">
-            <a href="#" class="next"><i class="fas fa-angle-right" ></i></a>
-            <a href="#" class="prev"><i class="fas fa-angle-left" ></i></a>
-        </div> -->
-    </div>
-    <!-- End Slider -->
+    
 
     <!-- Start Categories  -->
-    {% block content %} {% endblock %}
+    {% block content %} 
+
+
+    {% endblock %}
     <!-- End Blog  -->
     
 
@@ -158,7 +117,9 @@
                 <div class="row">
                     <div class="col-lg-4 col-md-12 col-sm-12">
                         <div class="footer-top-box">
-                            <h3>Business Time</h3>
+                            
+                            <h3>{{request.session.cart|length}}</h3>
+                            
                             <ul class="list-time">
                                 <li>Monday - Friday: 08.00am to 05.00pm</li>
                                 <li>Saturday: 10.00am to 08.00pm</li>
