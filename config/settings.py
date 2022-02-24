@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'account.apps.AccountConfig',
     'shop.apps.ShopConfig',
     'cart.apps.CartConfig',
+    'orders.apps.OrdersConfig',
     'django.contrib.humanize',
     'widget_tweaks',
 ]
@@ -70,6 +71,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'shop.context_processor.render_request',
+                'cart.context_processors.cart',
             ],
         },
     },

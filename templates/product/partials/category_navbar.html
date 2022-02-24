@@ -36,11 +36,11 @@
                 
                 <li class="nav-item">
                     <a href="{% url 'cart:cart_detail' %}" >
-                        <i class="fa fa-shopping-cart"></i>
+                        <i class="fa fa-shopping-cart" ></i>
                         
-                        <span class="badge bg-secondary">{{ request.session.cart|length }}</span>
-                        
-                        
+                        {% if request.session.cart %}
+                        <span class="badge bg-info text-light">{{cart|length}}</span>
+                        {% endif %}
                     </a>
                 </li>
             </ul>
