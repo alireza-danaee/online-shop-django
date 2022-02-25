@@ -6,6 +6,12 @@ from shop.models import Product
 
 
 class Order(models.Model):
+    STATE_CHOICES = (
+        ('kho' , 'خراسان'),
+        ('teh' , 'تهران'),
+        ('esf' , 'اصفهان'),
+    )
+       
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     email = models.EmailField()
@@ -15,7 +21,7 @@ class Order(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     paid = models.BooleanField(default=False)
-    state = models.CharField(max_length=100)
+    state = models.CharField(max_length=100 , choices=STATE_CHOICES)
 
 
     class Meta:

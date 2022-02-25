@@ -1,10 +1,7 @@
 from django import forms
 from .models import Order
 
-STATE_CHOICES = (
-        'خراسان',
-        'تهران'
-    )
+
 
 class OrderCreateForm(forms.ModelForm):
 
@@ -20,6 +17,6 @@ class OrderCreateForm(forms.ModelForm):
             'address':forms.Textarea(attrs={'class':'form-control'}),
             'postal_code':forms.TextInput(attrs={'class':'form-control'}),
             'city':forms.TextInput(attrs={'class':'form-control'}),
-            'state':forms.Select(choices=STATE_CHOICES)
+            'state':forms.Select(attrs={'class':'form-control'})
         }
         
