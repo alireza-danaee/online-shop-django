@@ -2653,7 +2653,10 @@
     width:50px !important;
 }
 
-
+.btn-hover:hover {
+    background-color: green !important;
+    color: #ffffff !important;
+}
 
 
 

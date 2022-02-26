@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'orders.apps.OrdersConfig',
     'django.contrib.humanize',
     'widget_tweaks',
+    'crispy_forms',
 ]
 
 

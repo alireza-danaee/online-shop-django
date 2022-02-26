@@ -12,7 +12,7 @@ class Order(models.Model):
         ('esf' , 'اصفهان'),
     )
        
-    first_name = models.CharField(max_length=100)
+    first_name = models.CharField(max_length=100 , verbose_name='نام')
     last_name = models.CharField(max_length=100)
     email = models.EmailField()
     address = models.TextField()
