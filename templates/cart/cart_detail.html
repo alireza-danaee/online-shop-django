@@ -2,7 +2,7 @@
 {% load static %}
 {% load humanize %}
 {% load widget_tweaks %}
-
+{% load crispy_forms_tags %}
 
 
 
@@ -35,6 +35,7 @@
 <!-- End All Title Box -->
 
 <!-- Start Cart  -->
+{% if cart %}
 <div class="cart-box-main" dir="rtl">
     <div class="container">
         <div class="row">
@@ -98,10 +99,10 @@
             <div class="col-lg-6 col-sm-6">
                 <div class="coupon-box">
                     <div class="input-group input-group-sm">
-                        <input class="form-control" placeholder="کد تخفیف خود را وارد کنید" aria-label="Coupon code" type="text">
-                        <div class="input-group-append">
-                            <button class="btn btn-theme" type="button">کد تخفیف</button>
-                        </div>
+                        <form action="{% url 'cart:cart_detail' %}">{% csrf_token %}
+                            {{form.as_p}}
+                            <button class="btn btn-primary">اعمال کد تخفیف</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -123,7 +124,7 @@
                     <hr>
                     <div class="d-flex gr-total">
                         <h5>جمع کل سفارش: </h5>
-                        <div class="ml-auto h5"> {{cart.get_total_price|intcomma}} </div>
+                        <div class="ml-auto h5"> {{cart.get_total_price_after_discount|intcomma}} </div>
                     </div>
                     <hr> </div>
             </div>
@@ -133,5 +134,19 @@
     </div>
 </div>
 <!-- End Cart -->
+{% else %}
+<div class="row" dir="rtl" style="height: 400px;width: 90%; margin: auto;">
+    <div class="col-md-12 text-center">
+        <div>
+            <img src="{% static 'product/images/empty-cart.svg' %}" alt="سبد خرید خالی">
+        </div>
+        <p style="font-size:30px;color: black;">سبد خرید شما خالی است !</p>
+        <p>می توانید برای مشاهده محصولات به صفحه زیر بروید :</p>
+        <a href="{% url 'shop:product_list' %}">
+        <button class="btn btn-primary mt-4">محصولات ما</button>
+        </a>
+    </div>
+</div>
+{% endif %}
 
 {% endblock %}

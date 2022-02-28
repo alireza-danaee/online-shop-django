@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'shop.apps.ShopConfig',
     'cart.apps.CartConfig',
     'orders.apps.OrdersConfig',
+    'coupons.apps.CouponsConfig',
     'django.contrib.humanize',
     'widget_tweaks',
     'crispy_forms',
@@ -147,3 +148,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'account.User'
 USE_THOUSAND_SEPARATOR = True
 NUMBER_GROUPING=3
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
