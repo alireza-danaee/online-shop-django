@@ -1,9 +1,21 @@
 {% extends 'product/base.html' %}
+{% load static %}
 
 
+
+
+{% load widget_tweaks %}
+{% load humanize %}
 
 
 {% block content %}
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="{% static 'product/images/banner-setup-3.jpg' %}" alt="..." style="height: 300px;width: 100%;">
+      </div>
+    </div>
+</div>
 <div class="categories-shop">
     <div class="container">
         <div class="row" dir="rtl">
@@ -54,8 +66,16 @@
                         <hr class="my-0" />
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-center pb-2 mb-1">
-                                <button type="button" class="btn btn-dark">مشاهده</button>
-                                <button type="button" class="btn btn-success">افزودن به سبد خرید</button>
+                                <a href="{% url 'shop:product_detail' product.slug %}">
+                                <button type="button" class="btn btn-dark mb-3">مشاهده</button>
+                                </a>
+                                <form action="{% url 'cart:cart_add' product.id %}" method="POST">{% csrf_token %}
+                                    <div class="form-group quantity-box">
+                                        <!-- <label class="control-label">تعداد</label> -->
+                                        {{form.quantity|attr:"value:1"|add_class:"class_quantity_1"}}
+                                        <button type="submit" class="btn btn-success">افزودن به سبد خرید</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>

@@ -99,37 +99,68 @@
             <div class="col-lg-6 col-sm-6">
                 <div class="coupon-box">
                     <div class="input-group input-group-sm">
-                        <form action="{% url 'cart:cart_detail' %}">{% csrf_token %}
-                            {{form.as_p}}
-                            <button class="btn btn-primary">اعمال کد تخفیف</button>
+                        <form action="{% url 'coupons:apply' %}" method="POST">{% csrf_token %}
+                            <div class="col-md-6 mb-3">
+                                <label for="code" style="float: right;">استفاده از کوپن تخفیف</label>
+                                {{form.code}}
+                                <!-- <input type="text" class="form-control" id="lastName" placeholder="" value="" required> -->
+                                <button class="btn btn-primary mt-2" style="float: right;" type="submit">اعمال کد تخفیف</button>
+                                
+                            </div>
                         </form>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6 col-sm-6">
+            <div class="col-lg-6 col-sm-6 mt-5">
                 <div class="update-box">
-                    
+                    <a href="{% url 'shop:product_list' %}">
                     <input value="ادامه خرید" type="submit">
+                    </a>
                    
                 </div>
             </div>
         </div>
-
+        {% if cart.coupon %}
         <div class="row my-5">
             <div class="col-lg-8 col-sm-12"></div>
             <div class="col-lg-4 col-sm-12">
                 <div class="order-box">
-                    
-                    
                     <hr>
                     <div class="d-flex gr-total">
-                        <h5>جمع کل سفارش: </h5>
-                        <div class="ml-auto h5"> {{cart.get_total_price_after_discount|intcomma}} </div>
+                        <h5 class="text-danger">قیمت اصلی : </h5>
+                        <div class="ml-auto h5 text-danger"> {{cart.get_total_price|intcomma}} </div>
+                    </div>
+                    <hr>
+                    <div class="d-flex gr-total">
+                        <h5>مقدار تخیف :</h5>
+                        <div class="ml-auto h5"> {{cart.get_discount|intcomma}} </div>
+                    </div>
+                    <hr>
+                    <div class="d-flex gr-total">
+                        <h5 class="text-success">جمع کل سفارش: </h5>
+                        <div class="ml-auto h5 text-success"> {{cart.get_total_price_after_discount|intcomma}} </div>
                     </div>
                     <hr> </div>
             </div>
             <div class="col-12 d-flex shopping-box"><a href="{% url 'orders:order_create' %}" class="ml-auto btn hvr-hover">تسویه حساب</a> </div>
         </div>
+        {% else %}
+        <div class="row my-5">
+            <div class="col-lg-8 col-sm-12"></div>
+            <div class="col-lg-4 col-sm-12">
+                <div class="order-box">
+                    <hr>
+                    <div class="d-flex gr-total">
+                        <h5>جمع کل سفارش: </h5>
+                        <div class="ml-auto h5"> {{cart.get_total_price|intcomma}} </div>
+                    </div>
+                    <hr> </div>
+            </div>
+            <div class="col-12 d-flex shopping-box"><a href="{% url 'orders:order_create' %}" class="ml-auto btn hvr-hover">تسویه حساب</a> </div>
+        </div>
+        {% endif %}
+        
+        
 
     </div>
 </div>

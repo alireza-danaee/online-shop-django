@@ -42,6 +42,6 @@ def cart_detail(request):
         })
     context = {
         'cart':cart,
-        'form':form_apply_code
+        'form':form_apply_code,
     }
     return render(request , 'cart/cart_detail.html' , context)

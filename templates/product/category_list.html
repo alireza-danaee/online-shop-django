@@ -2,6 +2,14 @@
 <!-- Extend base -->
 {% load static %}
 <!-- Load Static -->
+{% load widget_tweaks %}
+{% load humanize %}
+
+
+
+
+
+
 {% block content %}
 <div class="categories-shop">
     <div class="container">
@@ -38,7 +46,7 @@
                         <hr class="my-0" />
                         <div class="card-body pb-0">
                             <div class="d-flex justify-content-between">
-                                <p><a href="#!" class="text-dark">{{product.price}} تومان</a></p>
+                                <p><a href="#!" class="text-dark">{{product.price|intcomma}} تومان</a></p>
                                 <p class="text-dark">#### 8787</p>
                             </div>
                             {% if product.status == 'a' %}
@@ -54,9 +62,15 @@
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-center pb-2 mb-1">
                                 <a href="{% url 'shop:product_detail' product.slug %}">
-                                <button type="button" class="btn btn-dark">مشاهده</button>
+                                <button type="button" class="btn btn-dark mb-3">مشاهده</button>
                                 </a>
-                                <button type="button" class="btn btn-success">افزودن به سبد خرید</button>
+                                <form action="{% url 'cart:cart_add' product.id %}" method="POST">{% csrf_token %}
+                                    <div class="form-group quantity-box">
+                                        <!-- <label class="control-label">تعداد</label> -->
+                                        {{form.quantity|attr:"value:1"|add_class:"class_quantity_1"}}
+                                        <button type="submit" class="btn btn-success">افزودن به سبد خرید</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>

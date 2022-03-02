@@ -20,8 +20,9 @@ class ProductList(ListView):
 	def get_context_data(self , **kwargs):
 		context = super().get_context_data(**kwargs)
 		context['offers'] = Product.objects.filter(pishnahad=True).order_by('?')[:3]
+		context['form'] = CartAddProductForm()
 		return context
-
+	
 
 
 
@@ -57,6 +58,7 @@ class CategoryList(ListView):
 	def get_context_data(self , **kwargs):
 		context = super().get_context_data(**kwargs)
 		context['offers'] = Product.objects.filter(pishnahad=True).order_by('?')[:3]
+		context['form'] = CartAddProductForm()
 		return context
 
 
@@ -64,6 +66,12 @@ class CategoryList(ListView):
 class OfferList(ListView):
 	queryset = Product.objects.filter(pishnahad = True)
 	template_name = 'product/offer_list.html'
+
+
+	def get_context_data(self , **kwargs):
+		context = super().get_context_data(**kwargs)
+		context['form'] = CartAddProductForm()
+		return context
 
 
 
