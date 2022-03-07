@@ -2,6 +2,7 @@ from django.shortcuts import render ,get_object_or_404
 from django.views.generic import DetailView , ListView
 from .models import Product , Category
 from cart.forms import CartAddProductForm
+from .recommender import Recommender
 # Create your views here.
 
 
@@ -29,13 +30,17 @@ class ProductList(ListView):
 class ProductDetail(DetailView):
 	template_name = 'product/detail.html'
 	def get_object(self):
+		global product
 		slug = self.kwargs.get('slug')
 		product = get_object_or_404(Product.objects.all() , slug=slug)
 		return product
 	
 	def get_context_data(self, **kwargs):
+		r = Recommender()
+		recommended_products = r.suggest_product_for([product] , 4)
 		context = super().get_context_data(**kwargs)
 		context['form'] = CartAddProductForm()
+		context['recommended_products'] = recommended_products
 		return context
 
 

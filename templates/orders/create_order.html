@@ -130,8 +130,13 @@
                         </div>
                     </div>
                 </div>
+                
                 <div class="alert alert-info mt-5 text-center" role="alert">
                     جمع کل سفارش : {{cart.get_total_price|intcomma}} تومان
+                    <hr>
+                    مقدار تخفیف  : {{cart.get_discount|intcomma}} تومان
+                    <hr>
+                    مبلغ نهایی سبد خرید شما : {{cart.get_total_price_after_discount|intcomma}} تومان
                   </div>
             </div>
 
