@@ -1,0 +1,74 @@
+{% extends 'registration/base.html' %}
+{% load humanize %}
+{% load crispy_forms_tags %}
+
+
+{% block title %}
+افزودن مقاله
+
+{% endblock %}
+
+
+
+
+
+
+
+{% block main %}
+
+<form method="POST" enctype="multipart/form-data">{% csrf_token %}
+    <div class="row">
+        <div class="col-6">
+            {{ form.name|as_crispy_field }}
+        </div>
+        <div class="col-6">
+            {{ form.slug|as_crispy_field }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            {{ form.status|as_crispy_field }}
+        </div>
+        <div class="col-6">
+            {{ form.category|as_crispy_field }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            {{ form.description|as_crispy_field }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            {{ form.image|as_crispy_field }}
+        </div>
+        <div class="col-6">
+            {{ form.image2|as_crispy_field }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            {{ form.image3|as_crispy_field }}
+        </div>
+        <div class="col-6">
+            {{ form.image4|as_crispy_field }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            {{ form.price|as_crispy_field }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            {{ form.pishnahad|as_crispy_field }}
+        </div>
+    </div>
+    
+
+    <button class="btn btn-success" type="submit">ایجاد محصول</button>
+</form>
+
+
+
+{% endblock %}
