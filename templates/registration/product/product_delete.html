@@ -1,0 +1,49 @@
+{% extends 'registration/base.html' %}
+
+
+
+
+{% block title %}
+حذف محصول
+
+{% endblock %}
+
+
+
+
+
+
+
+{% block main %}
+
+<div class="row">
+    <div class="col-8 text-center mx-auto">
+      <div class="card">
+        <div class="card-header" style="background-color: red;">
+          
+
+          <div class="card-tools text-light" >
+            <h5>حذف محصول</h5>
+          </div>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body table-responsive p-0 py-3">
+          <table class="table table-hover">
+            <form method="post">{% csrf_token %}
+                <p>آیا از حذف کردن محصول {{object}} اطمینان دارید؟</p>
+                <input type="submit" value="حذف" class="btn btn-danger">
+            </form>
+            <a href="{% url 'account:product-list' %}">
+              <button class="btn btn-primary">بازگشت</button>
+              </a>
+          </table>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
+    </div>
+  </div>
+
+
+
+{% endblock %}

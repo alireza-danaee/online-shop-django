@@ -16,6 +16,9 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return reverse('account:category-list')
+
 
 
 
@@ -50,4 +53,4 @@ class Product(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('account:home')
+        return reverse('account:product-list')

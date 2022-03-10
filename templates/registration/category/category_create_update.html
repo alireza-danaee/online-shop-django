@@ -1,0 +1,35 @@
+{% extends 'registration/base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block title %}
+افزودن محصول
+
+{% endblock %}
+
+
+
+
+
+
+
+{% block main %}
+
+<form method="POST" enctype="multipart/form-data">{% csrf_token %}
+    <div class="row">
+        <div class="col-6">
+            {{ form.name|as_crispy_field }}
+        </div>
+        <div class="col-6">
+            {{ form.slug|as_crispy_field }}
+        </div>
+    </div>
+    
+    
+
+    <button class="btn btn-success" type="submit">ثبت دسته بندی</button>
+</form>
+
+
+
+{% endblock %}

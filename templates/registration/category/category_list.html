@@ -1,0 +1,69 @@
+{% extends 'registration/base.html' %}
+{% load humanize %}
+
+
+
+{% block title %}
+لیست محصولات
+
+{% endblock %}
+
+
+
+
+
+
+
+{% block main %}
+
+<div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          
+
+          <div class="card-tools">
+            <div class="input-group input-group-sm" style="width: 150px;">
+              <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+              <div class="input-group-append">
+                <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body table-responsive p-0">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>نام</th>
+                <th>آدرس</th>
+                <th>حذف دسته بندی</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for category in object_list %}
+              <tr>
+                <td><a href="{% url 'account:category-update' category.pk %}">
+                  {{category.name}}
+                </a></td>
+                <td>{{category.slug}}</td>
+                <td>
+                    <span class="badge bg-danger"><a href="{% url 'account:category-delete' category.pk %}">حذف دسته بندی</a></span>
+                </td>
+                
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
+    </div>
+  </div>
+
+
+
+{% endblock %}

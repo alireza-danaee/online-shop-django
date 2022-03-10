@@ -20,11 +20,12 @@
       </div>
 
       <!-- Sidebar Menu -->
+      {% if user.is_superuser %}
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item has-treeview menu-open">
+          <li class="nav-item has-treeview ">
             <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
@@ -40,7 +41,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{% url 'account:home' %}" class="nav-link">
+                <a href="{% url 'account:product-list' %}" class="nav-link">
                   <i class="fa fa-list nav-icon"></i>
                   <p>لیست محصولات</p>
                 </a>
@@ -57,9 +58,69 @@
               </p>
             </a>
           </li>
+          <li class="nav-item has-treeview ">
+            <a href="#" class="nav-link active">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                دسته بندی ها
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{% url 'account:category-create' %}" class="nav-link active">
+                  <i class="fa fa-edit nav-icon"></i>
+                  <p>افزودن دسته بندی</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{% url 'account:category-list' %}" class="nav-link">
+                  <i class="fa fa-list nav-icon"></i>
+                  <p>لیست دسته بندی ها</p>
+                </a>
+              </li>
+              
+            </ul>
+          </li>
+          <li class="nav-item has-treeview ">
+            <a href="#" class="nav-link active">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                کد های تخفیف
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{% url 'account:coupon-create' %}" class="nav-link active">
+                  <i class="fa fa-edit nav-icon"></i>
+                  <p>افزودن کد تخفیف</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{% url 'account:coupon-list' %}" class="nav-link">
+                  <i class="fa fa-list nav-icon"></i>
+                  <p>لیست کد های تخفیف</p>
+                </a>
+              </li>
+              
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'account:order-list' %}" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                لیست سفارشات
+              </p>
+            </a>
+          </li>
+          
          
         </ul>
       </nav>
+      {% else %}
+      <span>شما کاربر معمولی هستید</span>
+      {% endif %}
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->

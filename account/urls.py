@@ -5,7 +5,16 @@
 
 from django.contrib.auth import views
 from django.urls import path
-from .views import ProductListAdmin , ProductCreate 
+from .views import (
+    CategoryDelete, CategoryUpdate, 
+    CategoryCreate, CategoryListAdmin,
+    CouponListAdmin, CouponCreate,
+    ProductDelete, ProductListAdmin,
+    ProductCreate, ProductUpdate, 
+    Home,OrderList,
+    order_detail,
+)
+
 
 
 
@@ -29,6 +38,23 @@ urlpatterns = [
 
 
 urlpatterns += [
-    path ('' ,ProductListAdmin.as_view() , name = 'home'),
+    path ('' ,Home.as_view() , name = 'home'),
+    #----------------------PRODUCTS----------------------
+    path ('product/list' ,ProductListAdmin.as_view() , name = 'product-list'),
     path ('product/create' ,ProductCreate.as_view() , name = 'product-create'),
+    path ('product/update/<int:pk>' ,ProductUpdate.as_view() , name = 'product-update'),
+    path ('product/delete/<int:pk>' ,ProductDelete.as_view() , name = 'product-delete'),
+
+    #----------------------CATEGORIES----------------------
+    path ('category/list/' ,CategoryListAdmin.as_view() , name = 'category-list'),
+    path ('category/create' ,CategoryCreate.as_view() , name = 'category-create'),
+    path ('category/update/<int:pk>' ,CategoryUpdate.as_view() , name = 'category-update'),
+    path ('category/delete/<int:pk>' ,CategoryDelete.as_view() , name = 'category-delete'),
+
+
+    path ('coupon/list' ,CouponListAdmin.as_view() , name = 'coupon-list'),
+    path ('coupon/create' ,CouponCreate.as_view() , name = 'coupon-create'),
+
+    path ('order/list' ,OrderList.as_view() , name = 'order-list'),
+    path ('order/detail/<int:pk>' ,order_detail , name = 'order-detail'),
 ]

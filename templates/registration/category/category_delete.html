@@ -1,0 +1,49 @@
+{% extends 'registration/base.html' %}
+
+
+
+
+{% block title %}
+حذف دسته بندی
+
+{% endblock %}
+
+
+
+
+
+
+
+{% block main %}
+
+<div class="row">
+    <div class="col-8 text-center mx-auto">
+      <div class="card">
+        <div class="card-header" style="background-color: red;">
+          
+
+          <div class="card-tools text-light" >
+            <h5>حذف دسته بندی</h5>
+          </div>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body table-responsive p-0 py-3">
+          <table class="table table-hover">
+              <form method="post">{% csrf_token %}
+                  <p>آیا اطمینان دارید تا دسته بندی {{object}} حذف شود؟</p>
+                  <input type="submit" value="حذف" class="btn btn-danger">
+                </form>
+                <a href="{% url 'account:category-list' %}">
+                <button class="btn btn-primary">بازگشت</button>
+                </a>
+          </table>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
+    </div>
+  </div>
+
+
+
+{% endblock %}

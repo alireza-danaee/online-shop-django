@@ -1,0 +1,77 @@
+{% extends 'registration/base.html' %}
+{% load humanize %}
+
+
+
+{% block title %}
+لیست کدهای تخفیف
+
+{% endblock %}
+
+
+
+
+
+
+
+{% block main %}
+
+<div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          
+
+          <div class="card-tools">
+            <div class="input-group input-group-sm" style="width: 150px;">
+              <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+              <div class="input-group-append">
+                <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body table-responsive p-0">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>کد</th>
+                <th>از زمان:</th>
+                <th>تا زمان:</th>
+                <th>مقدار تخفیف</th>
+                <th>فعال بودن کد</th>
+                
+              </tr>
+            </thead>
+            <tbody>
+                {% for coupon in object_list %}
+              <tr>
+                <td><a href="#">
+                  {{coupon.code}}
+                </a></td>
+                <td>{{coupon.valid_from}}</td>
+                <td>{{coupon.valid_to}}</td>
+                <td>{{coupon.discount}}</td>
+                <td>
+                    {% if coupon.active %}
+                    <i class="fa fa-check-circle " style="color: green;" aria-hidden="true"></i>
+                    {% else %}
+                    <i class="fa fa-window-close" style="color: red;" aria-hidden="true"></i>
+                    {% endif %}
+                </td>
+                
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
+    </div>
+  </div>
+
+
+
+{% endblock %}

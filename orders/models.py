@@ -1,5 +1,6 @@
 from django.db import models
 from shop.models import Product
+from account.models import User
 # Create your models here.
 
 
@@ -7,9 +8,9 @@ from shop.models import Product
 
 class Order(models.Model):
     STATE_CHOICES = (
-        ('kho' , 'خراسان'),
-        ('teh' , 'تهران'),
-        ('esf' , 'اصفهان'),
+        ('خراسان' , 'خراسان',),
+        ('تهران' , 'تهران'),
+        ('اصفهان' , 'اصفهان'),
     )
        
     first_name = models.CharField(max_length=100 , verbose_name='نام')
@@ -32,6 +33,7 @@ class Order(models.Model):
 
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, related_name='items', on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, related_name='order_items', on_delete=models.CASCADE)
     price = models.PositiveIntegerField()
     quantity = models.PositiveIntegerField(default=1)

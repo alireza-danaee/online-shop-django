@@ -142,7 +142,11 @@
                     </div>
                     <hr> </div>
             </div>
+            {% if user.is_authenticated %}
             <div class="col-12 d-flex shopping-box"><a href="{% url 'orders:order_create' %}" class="ml-auto btn hvr-hover">تسویه حساب</a> </div>
+            {% else %}
+            <div class="col-12 d-flex shopping-box"><a href="{% url 'orders:order_create' %}" class="ml-auto btn hvr-hover">برای تسویه ثبت نام کنید</a> </div>
+            {% endif %}
         </div>
         {% else %}
         <div class="row my-5">
@@ -156,7 +160,11 @@
                     </div>
                     <hr> </div>
             </div>
+            {% if user.is_authenticated %}
             <div class="col-12 d-flex shopping-box"><a href="{% url 'orders:order_create' %}" class="ml-auto btn hvr-hover">تسویه حساب</a> </div>
+            {% else %}
+            <div class="col-12 d-flex shopping-box"><a href="{% url 'orders:order_create' %}" class="ml-auto btn hvr-hover">برای تسویه ثبت نام کنید</a> </div>
+            {% endif %}
         </div>
         {% endif %}
         
