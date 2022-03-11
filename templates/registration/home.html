@@ -4,8 +4,11 @@
 
 
 {% block title %}
-خانه
-
+{% if user.is_superuser %}
+سلام {{user.get_full_name}} عزیز شما مالک سایت هستید 
+{% else %}
+سلام {{user.get_full_name}} عزیز
+{% endif %}
 {% endblock %}
 
 
@@ -16,7 +19,124 @@
 
 {% block main %}
 
-صفحه اصلی
+{% if user.is_superuser %}
+
+<div class="row">
+    <div class="col-12">
+      <div class="card">
+        
+        <!-- /.card-header -->
+        <div class="card-body table-responsive p-0">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>پروفایل</th>
+                <th>محصولات</th>
+                <th>سفارشات</th>
+                <th>دسته بندی ها</th>
+                <th>کد های تخفیف</th>
+            </thead>
+            <tbody>
+                
+              <tr>
+                <td><a href="{% url 'account:profile' %}">
+                  <button class="btn btn-info">پروفایل شما <i class="nav-icon fas fa-th"></i></button>
+                </a></td>
+                <td><a href="{% url 'account:product-list' %}">
+                  <button class="btn btn-info">محصولات
+                    <i class="fa fa-list" aria-hidden="true"></i>
+                  </button>
+                </a></td>
+                <td><a href="{% url 'account:order-list' %}">
+                  <button class="btn btn-info">سفارشات
+                    <i class="fa fa-truck" aria-hidden="true"></i>
+                  </button>
+                </a></td>
+                <td><a href="{% url 'account:category-list' %}">
+                  <button class="btn btn-info">دسته بندی ها
+                    <i class="fa fa-book" aria-hidden="true"></i>
+                  </button>
+                </a></td>
+                <td><a href="{% url 'account:coupon-list' %}">
+                  <button class="btn btn-info">کد های تخفیف
+                    <i class="fa fa-gift" aria-hidden="true"></i>
+                  </button>
+                </a></td>
+                
+                
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
+    </div>
+  </div>
+
+
+
+
+
+{% else %}
+<div class="col-9 mx-auto mt-5">
+<div class="card">
+    <div class="card-header">
+      <h3 class="card-title" style="float: right;">اطللاعات حساب شما</h3>
+    </div>
+    <!-- /.card-header -->
+    
+    <div class="card-body p-0">
+        
+      <table class="table table-condensed">
+        <thead>
+          <tr>
+            
+            
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            
+            <td><a href="{% url 'account:profile' %}">
+                ویرایش اطلاعات حساب
+                <i class="fa fa-edit nav-icon"></i>
+                </a>
+            </td>
+            
+          </tr>
+          <tr>
+            
+            <td>
+                <a href="{% url 'account:order-detail' %}">
+                سفارشات شما
+                <i class="fa fa-shopping-cart nav-icon"></i>
+                </a>
+            </td>
+            
+          </tr>
+          <tr>
+            
+            <td>
+                <a href="{% url 'account:logout' %}">
+                خروج از حساب کاربری
+                <i class="fas fa-sign-out-alt" aria-hidden="true"></i>
+                </a>
+            </td>
+            
+          </tr>
+          
+          
+        </tbody>
+      </table>
+      
+    </div>
+    
+    <!-- /.card-body -->
+  </div>
+  </div>
+{% endif %}
 
 
 {% endblock %}

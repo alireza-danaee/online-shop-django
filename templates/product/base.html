@@ -51,11 +51,17 @@
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <div class="our-link">
+                        {% if user.is_authenticated %}
                         <ul>
-                            <li><a href="#"><i class="fa fa-user s_color"></i> ورود </a></li>
-                            <li><a href="#"><i class="fas fa-location-arrow"></i> ثبت نام</a></li>
+                            <li><a href="{% url 'account:home' %}"><i class="fa fa-user s_color"></i> حساب من </a></li>
+                        </ul>
+                        {% else %}
+                        <ul>
+                            <li><a href="{% url 'account:login' %}"><i class="fa fa-user s_color"></i> ورود </a></li>
+                            <li><a href="{% url 'register' %}"><i class="fas fa-location-arrow"></i> ثبت نام</a></li>
 
                         </ul>
+                        {% endif %}
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">

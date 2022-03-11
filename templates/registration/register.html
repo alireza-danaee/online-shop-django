@@ -60,16 +60,16 @@
 			<div class="wrap-login100 p-l-50 p-r-50 p-t-77 p-b-30">
 				<form class="login100-form validate-form" method="POST">{% csrf_token %}
 					<span class="login100-form-title p-b-55 myfont">
-						ورود به سایت
+						ثبت نام در سایت
 					</span>
 
-					<div class="wrap-input100 validate-input m-b-16" data-validate = "Valid email is required: ex@abc.xyz">
+					<div class="wrap-input100 validate-input m-b-16" data-validate = "Password is required">
 						<!-- <input class="input100 myfont" type="text" name="email" placeholder="ایمیل"> -->
-						{{form.username|add_class:"input100 , myfont"|attr:"placeholder:ایمیل"}}
-						{% if form.username.errors %}
+						{{form.first_name|add_class:"input100 , myfont"|attr:"placeholder:نام"}}
+						{% if form.first_name.errors %}
 							<div class="errors">
 					
-								{% for error in form.username.errors %}
+								{% for error in form.first_name.errors %}
 									<span>{{ error }}</span>
 								{% endfor %}
 							
@@ -83,11 +83,79 @@
 
 					<div class="wrap-input100 validate-input m-b-16" data-validate = "Password is required">
 						<!-- <input class="input100 myfont" type="password" name="pass" placeholder="رمز عبور"> -->
-						{{form.password|add_class:"input100 , myfont"|attr:"placeholder:رمز عبور"}}
-						{% if form.password.errors %}
+						{{form.last_name|add_class:"input100 , myfont"|attr:"placeholder:نام خانوادگی"}}
+						{% if form.last_name.errors %}
 							<div class="errors">
 					
-								{% for error in form.password.errors %}
+								{% for error in form.last_name.errors %}
+									<span>{{ error }}</span>
+								{% endfor %}
+							
+							</div>
+						{% endif %}
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<span class="lnr lnr-lock"></span>
+						</span>
+					</div>
+					<div class="wrap-input100 validate-input m-b-16" data-validate = "Password is required">
+						<!-- <input class="input100 myfont" type="password" name="pass" placeholder="رمز عبور"> -->
+						{{form.username|add_class:"input100 , myfont"|attr:"placeholder:نام کاربری"}}
+						{% if form.username.errors %}
+							<div class="errors">
+					
+								{% for error in form.username.errors %}
+									<span>{{ error }}</span>
+								{% endfor %}
+							
+							</div>
+						{% endif %}
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<span class="lnr lnr-lock"></span>
+						</span>
+					</div>
+					<div class="wrap-input100 validate-input m-b-16" data-validate = "Password is required">
+						<!-- <input class="input100 myfont" type="password" name="pass" placeholder="رمز عبور"> -->
+						{{form.email|add_class:"input100 , myfont"|attr:"placeholder:ایمیل"}}
+						{% if form.email.errors %}
+							<div class="errors">
+					
+								{% for error in form.email.errors %}
+									<span>{{ error }}</span>
+								{% endfor %}
+							
+							</div>
+						{% endif %}
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<span class="lnr lnr-lock"></span>
+						</span>
+					</div>
+					<div class="wrap-input100 validate-input m-b-16" data-validate = "Password is required">
+						<!-- <input class="input100 myfont" type="password" name="pass" placeholder="رمز عبور"> -->
+						{{form.password1|add_class:"input100 , myfont"|attr:"placeholder:گذرواژه"}}
+						{% if form.password1.errors %}
+							<div class="errors">
+					
+								{% for error in form.password1.errors %}
+									<span>{{ error }}</span>
+								{% endfor %}
+							
+							</div>
+						{% endif %}
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<span class="lnr lnr-lock"></span>
+						</span>
+					</div>
+					<div class="wrap-input100 validate-input m-b-16" data-validate = "Password is required">
+						<!-- <input class="input100 myfont" type="password" name="pass" placeholder="رمز عبور"> -->
+						{{form.password2|add_class:"input100 , myfont"|attr:"placeholder:تایید گذرواژه"}}
+						{% if form.password2.errors %}
+							<div class="errors">
+					
+								{% for error in form.password2.errors %}
 									<span>{{ error }}</span>
 								{% endfor %}
 							
@@ -108,7 +176,7 @@
 					
 					<div class="container-login100-form-btn p-t-25">
 						<button class="login100-form-btn myfont">
-							ورود
+							ثبت نام
 						</button>
 					</div>
 
@@ -116,11 +184,11 @@
 
 					<div class="text-center w-full p-t-115 myfont">
 						<span class="txt1">
-							هنوز ثبت نام نکردید؟
+							حسابی دارید؟
 						</span>
 
-						<a class="txt1 bo1 hov1 myfont" href="{% url 'register' %}">
-							همین الان ثبت نام کنید							
+						<a class="txt1 bo1 hov1 myfont" href="{% url 'account:login' %}">
+							وارد شوید						
 						</a>
 						
 					</div>

@@ -149,6 +149,7 @@ AUTH_USER_MODEL = 'account.User'
 
 LOGIN_REDIRECT_URL = 'shop:product_list'
 LOGIN_URL = 'account:login'
+LOGOUT_REDIRECT_URL = 'shop:product_list'
 
 
 
@@ -167,3 +168,11 @@ REDIS_PORT = 6379
 REDIS_DB = 1
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'alirezadanaee08@gmail.com'
+EMAIL_HOST_PASSWORD = '@lireza2000'
+EMAIL_PORT = 587

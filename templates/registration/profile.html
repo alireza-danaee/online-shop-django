@@ -1,0 +1,44 @@
+{% extends 'registration/base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block title %}
+پروفایل شما
+
+{% endblock %}
+
+
+
+
+
+
+
+{% block main %}
+
+<form method="POST" enctype="multipart/form-data">{% csrf_token %}
+    <div class="row">
+        <div class="col-6">
+            {{ form.first_name|as_crispy_field }}
+        </div>
+        <div class="col-6">
+            {{ form.last_name|as_crispy_field }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            {{ form.email|as_crispy_field }}
+        </div>
+        <div class="col-6">
+            {{ form.username|as_crispy_field }}
+        </div>
+        
+       
+    </div>
+    
+   
+    <button class="btn btn-success" type="submit">ویرایش</button>
+</form>
+
+
+
+{% endblock %}

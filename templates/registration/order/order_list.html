@@ -52,7 +52,7 @@
             <tbody>
                 {% for order in object_list %}
               <tr>
-                <td><a href="{% url 'account:order-detail' order.pk %}">
+                <td><a href="{% url 'account:order-detail'  %}">
                   {{order.first_name}}
                 </a></td>
                 <td>{{order.last_name}}</td>
