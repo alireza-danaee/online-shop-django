@@ -9,6 +9,7 @@ from shop.models import Product ,Category
 from coupons.models import Coupons
 from orders.models import Order , OrderItem
 from account.models import User
+
 # Create your views here.
 
 
@@ -20,6 +21,13 @@ from account.models import User
 class Home(LoginRequiredMixin,ListView):
 	queryset = Product.objects.all()
 	template_name = 'registration/home.html'
+	def get_context_data(self , **kwargs):
+		context = super().get_context_data(**kwargs)
+		context['all_users'] =  User.objects.all().count()
+		context['all_orders'] =  Order.objects.all().count()
+		context['all_products'] =  Product.objects.all().count()
+		context['all_coupons'] =  Coupons.objects.all().count()
+		return context
 
 
 # ---------------------- PRODUCTS -------------------------
@@ -84,14 +92,30 @@ class CouponCreate(LoginRequiredMixin,CouponAccessMixin,CreateView):
 class OrderList(LoginRequiredMixin,ListView):
 	queryset = Order.objects.all()
 	template_name = 'registration/order/order_list.html'
+	def get_context_data(self , **kwargs):
+		context = super().get_context_data(**kwargs)
+		context['order_id'] = OrderItem.objects.filter(user_id=self.request.user.id)
+		return context
 
 
-def order_detail(request ):
+def order_history_user(request ):
 	order = OrderItem.objects.filter(user_id=request.user.id)
 	context = {
 		'order_detail':order,
 	}
 	return render(request,'registration/order/order_detail.html',context)
+
+
+		
+def order_history_admin(request ,id ):
+	order = OrderItem.objects.filter(user_id=id)
+	context = {
+		'order_detail':order,
+	}
+	return render(request,'registration/order/order_history_admin.html',context)
+	
+
+
 
 
 

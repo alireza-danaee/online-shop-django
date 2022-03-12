@@ -37,6 +37,14 @@
                                         <div class="invalid-feedback"> Valid last name is required. </div>
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="zip" style="float: right;">شماره همراه *</label>
+                                        {{form.phone}}
+                                        <!-- <input type="text" class="form-control" id="zip" placeholder="" required> -->
+                                        <div class="invalid-feedback"> Zip code required. </div>
+                                    </div>
+                                </div>
                                 
                                 <div class="mb-3">
                                     <label for="email" style="float: right;">ایمیل *</label>
@@ -75,6 +83,14 @@
                                         {{form.postal_code}}
                                         <!-- <input type="text" class="form-control" id="zip" placeholder="" required> -->
                                         <div class="invalid-feedback"> Zip code required. </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3" >
+                                    <div class="mb-3" >
+                                        <label for="address" style="float: right;">توضیحات اختیاری *</label>
+                                        {{form.description_user}}
+                                        <!-- <input type="text" class="form-control" id="address" placeholder="" required> -->
+                                        <div class="invalid-feedback">  </div>
+                                    </div>
                                     </div>
                                 </div>
                                 <button class="btn btn-primary btn-hover" type="submit">تایید سفارش</button>

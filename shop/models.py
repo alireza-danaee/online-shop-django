@@ -41,8 +41,8 @@ class Product(models.Model):
     status = models.CharField(choices=CHOOSE_STATUS , max_length=1 , verbose_name='وضعیت')
     pishnahad = models.BooleanField(default=False , verbose_name="پیشنهاد شده")
     category = models.ForeignKey(Category , on_delete=models.CASCADE , verbose_name="دسته بندی", related_name="products") 
-    created = models.DateField(auto_now_add=True)
-    updated = models.DateField(auto_now=True)
+    created = models.DateField(auto_now_add=True,verbose_name="تاریخ ثبت")
+    updated = models.DateField(auto_now=True , verbose_name="تاریخ بروزرسانی")
 
 
     class Meta:

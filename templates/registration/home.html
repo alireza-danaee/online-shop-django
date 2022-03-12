@@ -21,11 +21,11 @@
 
 {% if user.is_superuser %}
 
-<div class="row">
+<!-- <div class="row">
     <div class="col-12">
       <div class="card">
         
-        <!-- /.card-header -->
+        
         <div class="card-body table-responsive p-0">
           <table class="table table-hover">
             <thead>
@@ -35,6 +35,7 @@
                 <th>سفارشات</th>
                 <th>دسته بندی ها</th>
                 <th>کد های تخفیف</th>
+                
             </thead>
             <tbody>
                 
@@ -69,9 +70,67 @@
             </tbody>
           </table>
         </div>
-        <!-- /.card-body -->
+      
+       
       </div>
-      <!-- /.card -->
+      
+    </div>
+  </div> -->
+  <div class="row">
+    <div class="col-lg-3 col-6">
+      <!-- small box -->
+      <div class="small-box bg-success">
+        <div class="inner">
+          <h3>{{all_orders}}</h3>
+
+          <p>لیست سفارشات</p>
+        </div>
+        <div class="icon">
+          <i class="ion ion-bag"></i>
+        </div>
+        <a href="{% url 'account:order-list' %}" class="small-box-footer">اطلاعات بیشتر <i class="fas fa-arrow-circle-right"></i></a>
+      </div>
+    </div>
+    <div class="col-lg-3 col-6">
+    <div class="small-box bg-warning">
+      <div class="inner">
+        <h3>{{all_users}}</h3>
+
+        <p>کاربران ثبت نام کرده</p>
+      </div>
+      <div class="icon">
+        <i class="ion ion-person-add"></i>
+      </div>
+      <a href="#" class="small-box-footer">اطلاعات بیشتر <i class="fas fa-arrow-circle-right"></i></a>
+    </div>
+    </div>
+    <div class="col-lg-3 col-6">
+      <!-- small box -->
+      <div class="small-box bg-info">
+        <div class="inner">
+          <h3>{{all_products}}</h3>
+
+          <p>لیست محصولات</p>
+        </div>
+        <div class="icon">
+          <i class="ion ion-bag"></i>
+        </div>
+        <a href="{% url 'account:product-list' %}" class="small-box-footer">اطلاعات بیشتر <i class="fas fa-arrow-circle-right"></i></a>
+      </div>
+    </div>
+    <div class="col-lg-3 col-6">
+      <!-- small box -->
+      <div class="small-box bg-danger">
+        <div class="inner">
+          <h3>{{all_coupons}}</h3>
+
+          <p>لیست کدهای تخفیف</p>
+        </div>
+        <div class="icon">
+          <i class="ion ion-pie-graph"></i>
+        </div>
+        <a href="{% url 'account:coupon-list' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+      </div>
     </div>
   </div>
 
@@ -109,7 +168,7 @@
           <tr>
             
             <td>
-                <a href="{% url 'account:order-detail' %}">
+                <a href="{% url 'account:order-history-user' %}">
                 سفارشات شما
                 <i class="fa fa-shopping-cart nav-icon"></i>
                 </a>

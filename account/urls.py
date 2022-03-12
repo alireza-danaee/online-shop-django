@@ -11,8 +11,9 @@ from .views import (
     CouponListAdmin, CouponCreate,
     ProductDelete, ProductListAdmin,
     ProductCreate, ProductUpdate, 
-    Home,OrderList,
-    order_detail,Profile
+    Home,OrderList, order_history_admin,
+    order_history_user,Profile
+    
 )
 
 
@@ -56,7 +57,8 @@ urlpatterns += [
     path ('coupon/create/' ,CouponCreate.as_view() , name = 'coupon-create'),
 
     path ('order/list/' ,OrderList.as_view() , name = 'order-list'),
-    path ('order/detail/' ,order_detail , name = 'order-detail'),
+    path ('order/history/' ,order_history_user , name = 'order-history-user'),
+    path ('order/history/<int:order_user_id>/' ,order_history_admin , name = 'order-history-admin'),
 
     path ('profile/' ,Profile.as_view() , name = 'profile'),
 ]
