@@ -40,6 +40,7 @@ class Product(models.Model):
     price = models.PositiveIntegerField(verbose_name="قیمت محصول")
     status = models.CharField(choices=CHOOSE_STATUS , max_length=1 , verbose_name='وضعیت')
     pishnahad = models.BooleanField(default=False , verbose_name="پیشنهاد شده")
+    Inventory = models.PositiveIntegerField(verbose_name="موجودی" , null=True , blank=True)
     category = models.ForeignKey(Category , on_delete=models.CASCADE , verbose_name="دسته بندی", related_name="products") 
     created = models.DateField(auto_now_add=True,verbose_name="تاریخ ثبت")
     updated = models.DateField(auto_now=True , verbose_name="تاریخ بروزرسانی")

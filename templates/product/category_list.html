@@ -21,7 +21,7 @@
 
                     <div class="card" style="border-radius: 15px;">
                         <div class="bg-image hover-overlay ripple ripple-surface ripple-surface-light" data-mdb-ripple-color="light" style="width: 100%; height: 170px;">
-                            <img src="{{product.image.url}}" style="border-top-left-radius: 15px; border-top-right-radius: 15px;height:150px; width:100%" class="img-fluid" alt="Laptop" />
+                            <img src="{{product.image.url}}" style="border-top-left-radius: 15px; border-top-right-radius: 15px;height:150px; width:100%" class="img-fluid" alt="{{product.name}}" />
                             <a href="#!">
                                 <div class="mask"></div>
                             </a>
@@ -86,7 +86,7 @@
         <a href="http://localhost:8000/category/mouse">
         <div class="col-lg-5 col-md-8 card-box-rounded mt-3" style="background-color: #E0B0FF;">
             <div class="col-6 mt-2" style="float: right;">
-                <img src="{% static 'product/images/box-1.png' %}" style="height: 150px;width: 100%; margin-top: 5px;">
+                <img src="{% static 'product/images/box-1.png' %}" style="height: 150px;width: 100%; margin-top: 5px;" alt="mouse">
             </div>
             
             <div class="col-6 text-center box-card-ghab" style="background-color: #E0B0FF;">
@@ -98,7 +98,7 @@
         
         <div class="col-lg-5 col-md-8 card-box-rounded mt-3" style="background-color: #B3FFB0;margin-left: auto;">
             <div class="col-6 mt-2" style="float: right;">
-                <img src="{% static 'product/images/box-2.png' %}" style="height: 150px;width: 100%; margin-top: 5px;">
+                <img src="{% static 'product/images/box-2.png' %}" style="height: 150px;width: 100%; margin-top: 5px;" alt="keyboard">
             </div>
             <div class="col-6 text-center box-card-ghab" style="background-color:#B3FFB0;">
                 <div style="font-size: 24px;">انواع کیبورد</div>
@@ -108,7 +108,7 @@
         <a href="http://localhost:8000/category/mrofon">
         <div class="col-lg-5 col-md-8 card-box-rounded mt-3 " style="background-color: #7AC8FF;">
             <div class="col-6 mt-2" style="float: right;">
-                <img src="{% static 'product/images/box-3.png' %}" style="height: 150px;width: 100%; margin-top: 5px;">
+                <img src="{% static 'product/images/box-3.png' %}" style="height: 150px;width: 100%; margin-top: 5px;" alt="microphone">
             </div>
             <div class="col-6 text-center box-card-ghab" style="background-color: #7AC8FF;">
                 <div style="font-size: 24px;">انواع میکروفون </div>
@@ -118,7 +118,7 @@
         <a href="http://localhost:8000/category/sandali">
         <div class="col-lg-5 col-md-8 card-box-rounded mt-3 " style="background-color: #DC785A;margin-left: auto;">
             <div class="col-6 mt-2" style="float: right;">
-                <img src="{% static 'product/images/box-4.png' %}" style="height: 150px;width: 100%; margin-top: 5px;">
+                <img src="{% static 'product/images/box-4.png' %}" style="height: 150px;width: 100%; margin-top: 5px;" alt="chair">
             </div>
             <div class="col-6 text-center box-card-ghab" style="background-color: #DC785A;">
                 <div style="font-size: 24px;">انواع صندلی </div>
@@ -165,7 +165,7 @@
 
             <div class="col-md-12 col-lg-3 col-xl-3  mt-3 mr-2">
                 <div class="card " style="width: 18rem;">
-                    <img src="{{pish.image.url}}" class="card-img-top" alt="..." style="height: 150px;">
+                    <img src="{{pish.image.url}}" class="card-img-top" alt="{{pish.name}}" style="height: 150px;" >
                     <div class="card-body">
                         <h5 class="card-title">{{pish.name}}</h5>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -180,7 +180,7 @@
             </div>
             {% endfor %}
             <div class="col-lg-2 col-md-12 mt-3">
-                <img src="{% static 'product/images/pishnahad.png' %}" style="height: 330px">
+                <img src="{% static 'product/images/pishnahad.png' %}" style="height: 330px" alt="offer">
                 <div class="text-center">
                     <button type="button" class="btn btn-dark mt-2" style="background-color: rgba(51,51,51,1);"><i class="fas fa-chevron-left"></i> مشاهده همه</button>
                 </div>

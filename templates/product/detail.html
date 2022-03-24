@@ -126,7 +126,7 @@
 			{% for product in recommended_products %}
 		<div class="col-6 col-lg-2">
 			<div class="card" style="width:192px; height:298px;">
-				<img src="{{product.image.url}}" class="card-img-top" alt="..." width="150px" height="150px">
+				<img src="{{product.image.url}}" class="card-img-top" alt="{{product.name}}" width="150px" height="150px">
 				<div class="card-body">
 				<p class="card-text" style="color: black;">{{product.name}}</p>
 				<p style="color: black;">{{product.price|intcomma}} تومان</p>

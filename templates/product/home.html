@@ -17,7 +17,7 @@
 <div id="slides-shop" class="cover-slides slide-size">
     <ul class="slides-container">
         <li class="text-center">
-            <img src="{% static 'product/images/card-1.webp' %}" alt="">
+            <img src="{% static 'product/images/card-1.webp' %}" alt="مگاگیم">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
@@ -29,7 +29,7 @@
             </div>
         </li>
         <li class="text-center">
-            <img src="{% static 'product/images/card-2.webp' %}" alt="">
+            <img src="{% static 'product/images/card-2.webp' %}" alt="مگاگیم">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
@@ -41,7 +41,7 @@
             </div>
         </li>
         <li class="text-center">
-            <img src="{% static 'product/images/card-3.webp' %}" alt="">
+            <img src="{% static 'product/images/card-3.webp' %}" alt="مگاگیم">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
@@ -69,7 +69,7 @@
 
                     <div class="card" style="border-radius: 15px;">
                         <div class="bg-image hover-overlay ripple ripple-surface ripple-surface-light" data-mdb-ripple-color="light" style="width: 100%; height: 170px;">
-                            <img src="{{product.image.url}}" style="border-top-left-radius: 15px; border-top-right-radius: 15px;height:150px; width:100%" class="img-fluid" alt="Laptop" />
+                            <img src="{{product.image.url}}" style="border-top-left-radius: 15px; border-top-right-radius: 15px;height:150px; width:100%" class="img-fluid" alt="{{product.name}}" />
                             <a href="#!">
                                 <div class="mask"></div>
                             </a>
@@ -227,7 +227,7 @@
 
             <div class="col-md-12 col-lg-3 col-xl-3  mt-3 mr-2">
                 <div class="card " style="width: 18rem;">
-                    <img src="{{pish.image.url}}" class="card-img-top" alt="..." style="height: 150px;">
+                    <img src="{{pish.image.url}}" class="card-img-top" alt="{{pish.name}}" style="height: 150px;">
                     <div class="card-body">
                         <h5 class="card-title">{{pish.name}}</h5>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
