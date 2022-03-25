@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
-
+from decouple import config
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-%1k%e#n0@d(x70m%h6*hf#f0szog6-e-^+exw+g@osq&hafk0p'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -158,7 +158,6 @@ LOGOUT_REDIRECT_URL = 'shop:product_list'
 USE_THOUSAND_SEPARATOR = True
 NUMBER_GROUPING=3
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 
 
@@ -171,8 +170,9 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'alirezadanaee08@gmail.com'
-EMAIL_HOST_PASSWORD = '@lireza2000'
-EMAIL_PORT = 587
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_PORT = config('EMAIL_PORT')
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
