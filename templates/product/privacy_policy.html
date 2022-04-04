@@ -1,0 +1,193 @@
+{% extends 'product/base.html' %}
+
+
+
+
+
+
+
+
+
+
+
+
+{% block content %}
+<div class="row justify-content-center mt-5 mb-5" dir="rtl">
+<div class="col-10">
+<div class="accordion" id="accordionExample">
+  <div class="card">
+    <div class="card-header" id="headingOne" style="padding: 0;">
+      <h2 class="mb-0" style="float: right;">
+        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          عضویت <i class="fa fa-users" aria-hidden="true"></i>
+        </button>
+      </h2>
+    </div>
+
+    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+      <div class="card-body" style="float: right;" dir="rtl">
+        <p style="float: right;">افراد برای عضویت در سایت باید به قسمت عضویت مراجعه کنند.</p>
+        <br>
+        <p>در این مرحله با وارد کردن اطلاعات لازم مانند نام و نام‌خانوادگی، رمز عبور و آدرس پست الکترونیکی، لینک تایید عضویت برای آنان ارسال می‌شود که کاربران با کلیک نمودن آن، مراحل عضویت را تایید می‌کنند.</p>
+        <br>
+        <p style="float: right;">تبصره 1: کاربر باید رمز عبور و نام کاربری خود را حفظ نموده و چنانچه آن را فراموش کند، می‌تواند برای ثبت نام مجدد و اخذ کلمه عبور جدید اقدام کند.</p>
+        <br>
+        <br>
+        <p style="float: right;">تبصره 2: کاربر باید آدرس پست الکترونیک خود را به همراه سایر اطلاعات درخواستی به‌طور صحیح اعلام نموده و مسئولیت ثبت اشتباه و یا خلاف واقع بر عهده شخص کاربر است.</p>
+        <br>
+        <br>
+        <p style="float: right;">تبصره 3: عضویت در سایت مگا گیم رایگان است.</p>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingTwo"  style="padding: 0;">
+      <h2 class="mb-0" style="float: right;">
+        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          فرایند خرید <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+        </button>
+      </h2>
+    </div>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+      <div class="card-body" style="float: right;" >
+        <p style="float: right;">فرایند خرید از سایت توسط کاربر به این شرح است.</p>
+        <br>
+        <p style="float: right;">قسمت اول: بازدید از کالاها و خدمات ارائه شده در سایت</p>
+        <p style="float: right;">قسمت دوم: پرداخت مبلغ معین ( یا اعمال کوپن تخفیف) به‌صورت آنلاین توسط خریدار</p>
+        <p style="float: right;">قسمت سوم: ارسال رسید کالا و خدمات خریداری شده در قالب ایمیل و یا به‌صورت پیامک به آدرس پست الکترونیک  توسط آرس سیستم</p>
+        <br>
+        <br>
+        <p style="float: right;">قسمت چهارم: ارسال کالا توسط آرس سیستم با پیک یا پست می باشد</p>
+        <br>
+        <br>
+        <p style="float: right;"><strong>برای شهرستان پست از طریق تیپاکس هست که هزینه ارسال به عهده مشتری می باشد. و بسته بندی محصول به عهده آرس سیستم می باشد.</strong></p>
+        <br>
+        <br>
+        <p style="float: right;"><strong>ارسال از طریق پیک در تهران برای خرید بالای 500 هزار تومان در نظر گرفته شده است ارسال سریع با هماهنگی مشتری و فروشگاه آرس سیستم صورت میگیرد</strong></p>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingThree"  style="padding: 0;">
+      <h2 class="mb-0" style="float: right;">
+        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          بعد از خرید <i class="fa fa-shopping-basket" aria-hidden="true"></i>
+        </button>
+      </h2>
+    </div>
+    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+      <div class="card-body">
+        And lastly, the placeholder content for the third and final accordion panel. This panel is hidden by default.
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingFour" style="padding: 0;">
+      <h2 class="mb-0" style="float: right;">
+        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+ارسال کالا <i class="fa fa-truck" aria-hidden="true"></i>
+        </button>
+      </h2>
+    </div>
+
+    <div id="collapseFour" class="collapse " aria-labelledby="headingFour" data-parent="#accordionExample">
+      <div class="card-body">
+        Some placeholder content for the first accordion panel. This panel is shown by default, thanks to the <code>.show</code> class.
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingFive" style="padding: 0;">
+      <h2 class="mb-0" style="float: right;">
+        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
+  اجناس بدون گارانتی <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+        </button>
+      </h2>
+    </div>
+
+    <div id="collapseFive" class="collapse " aria-labelledby="headingFive" data-parent="#accordionExample">
+      <div class="card-body">
+        Some placeholder content for the first accordion panel. This panel is shown by default, thanks to the <code>.show</code> class.
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingSix" style="padding: 0;">
+      <h2 class="mb-0" style="float: right;">
+        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseSix" aria-expanded="true" aria-controls="collapseSix">
+اطلاعات کاربر <i class="fa fa-book" aria-hidden="true"></i>
+        </button>
+      </h2>
+    </div>
+
+    <div id="collapseSix" class="collapse " aria-labelledby="headingSix" data-parent="#accordionExample">
+      <div class="card-body">
+        Some placeholder content for the first accordion panel. This panel is shown by default, thanks to the <code>.show</code> class.
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingSeven" style="padding: 0;">
+      <h2 class="mb-0" style="float: right;">
+        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="true" aria-controls="collapseSeven">
+اختلال در سرویس <i class="fa fa-server" aria-hidden="true"></i>
+        </button>
+      </h2>
+    </div>
+
+    <div id="collapseSeven" class="collapse " aria-labelledby="headingSeven" data-parent="#accordionExample">
+      <div class="card-body">
+        Some placeholder content for the first accordion panel. This panel is shown by default, thanks to the <code>.show</code> class.
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingEight" style="padding: 0;">
+      <h2 class="mb-0" style="float: right;">
+        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseEight" aria-expanded="true" aria-controls="collapseEight">
+نظرات <i class="fa fa-comments" aria-hidden="true"></i>
+        </button>
+      </h2>
+    </div>
+
+    <div id="collapseEight" class="collapse " aria-labelledby="headingEight" data-parent="#accordionExample">
+      <div class="card-body">
+        Some placeholder content for the first accordion panel. This panel is shown by default, thanks to the <code>.show</code> class.
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingNine" style="padding: 0;">
+      <h2 class="mb-0" style="float: right;">
+        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseNine" aria-expanded="true" aria-controls="collapseNine">
+شرایط برگشت کالا <i class="fa fa-bicycle" aria-hidden="true"></i>
+        </button>
+      </h2>
+    </div>
+
+    <div id="collapseNine" class="collapse " aria-labelledby="headingNine" data-parent="#accordionExample">
+      <div class="card-body">
+        Some placeholder content for the first accordion panel. This panel is shown by default, thanks to the <code>.show</code> class.
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingTen" style="padding: 0;">
+      <h2 class="mb-0" style="float: right;">
+        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseTen" aria-expanded="true" aria-controls="collapseTen">
+در صورت موجود نبودن کالا بعد از خرید <i class="fa fa-refresh" aria-hidden="true"></i>
+        </button>
+      </h2>
+    </div>
+
+    <div id="collapseTen" class="collapse " aria-labelledby="headingTen" data-parent="#accordionExample">
+      <div class="card-body">
+        Some placeholder content for the first accordion panel. This panel is shown by default, thanks to the <code>.show</code> class.
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+{% endblock %}

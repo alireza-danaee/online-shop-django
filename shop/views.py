@@ -79,6 +79,15 @@ class OfferList(ListView):
 		context['form'] = CartAddProductForm()
 		return context
 
+	
+def privacy_policy(request):
+	return render(request , "product/privacy_policy.html")
+
+
+
+
+
+
 
 
 
