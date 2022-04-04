@@ -112,12 +112,27 @@
 				</div>
 			</div>
 		</div>
+		<div class="row" >
+			<div class="col-8 text-center" > 
+				<table class="table table-bordered">
+					<thead>
+						<tr>مشخصات {{object.name}}</tr>
+					</thead>
+					{% for triat in triats %}
+					<tbody>
+						<td>{{triat.name}}</td>
+						<td>{{triat.value}}</td>
+					</tbody>
+					{% endfor %}
+				</table>
+			</div>
+		</div>
 		{% if recommended_products %}
 		<div class="row text-center">
 			<div class="col12 ">
 				<h1 class="text-center">
 					کالاهای پیشنهادی
-					</h1>
+				</h1>
 				
 			</div>
 		</div>

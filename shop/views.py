@@ -1,6 +1,6 @@
 from django.shortcuts import render ,get_object_or_404
 from django.views.generic import DetailView , ListView
-from .models import Product , Category
+from .models import Product , Category,Attribute
 from cart.forms import CartAddProductForm
 from .recommender import Recommender
 # Create your views here.
@@ -41,6 +41,7 @@ class ProductDetail(DetailView):
 		context = super().get_context_data(**kwargs)
 		context['form'] = CartAddProductForm()
 		context['recommended_products'] = recommended_products
+		context['triats'] = Attribute.objects.filter(attribute=product)
 		return context
 
 

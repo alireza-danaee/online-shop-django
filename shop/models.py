@@ -21,8 +21,6 @@ class Category(models.Model):
 
 
 
-
-
 class Product(models.Model):
     CHOOSE_STATUS = (
         ('u' , 'ناموجود'),         # unavailble
@@ -55,3 +53,9 @@ class Product(models.Model):
 
     def get_absolute_url(self):
         return reverse('account:product-list')
+
+
+class Attribute(models.Model):
+    name = models.CharField(max_length=256,verbose_name="نام ویژگی")
+    value = models.CharField(max_length=256,verbose_name="مقدار ویژگی")
+    attribute = models.ForeignKey(Product , related_name="triat" , on_delete=models.CASCADE)
