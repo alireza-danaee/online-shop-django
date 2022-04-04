@@ -158,7 +158,7 @@ LOGOUT_REDIRECT_URL = 'shop:product_list'
 USE_THOUSAND_SEPARATOR = True
 NUMBER_GROUPING=3
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 
 
