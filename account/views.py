@@ -185,18 +185,18 @@ class Register(CreateView):
 
 
 def activate(request, uidb64, token):
-    try:
-        uid = force_str(urlsafe_base64_decode(uidb64))
-        user = User.objects.get(pk=uid)
-    except(TypeError, ValueError, OverflowError, User.DoesNotExist):
-        user = None
-    if user is not None and account_activation_token.check_token(user, token):
-        user.is_active = True
-        user.save()
-        # return redirect('home')
-        return HttpResponse('با تشکر از شما برای تایید ایمیل شما. اکنون می توانید به حساب کاربری خود وارد شوید. <a href="{% url "account:login" %}">ورود</a>')
-    else:
-        return HttpResponse('لینک فعال سازی نامعتبر است!')
+	try:
+		uid = force_str(urlsafe_base64_decode(uidb64))
+		user = User.objects.get(pk=uid)
+	except(TypeError, ValueError, OverflowError, User.DoesNotExist):
+		user = None
+	if user is not None and account_activation_token.check_token(user, token):
+		user.is_active = True
+		user.save()
+		# return redirect('home')
+		return HttpResponse('باتشکر از شما برای تایید ایمیل  اکنون میتوانید به حساب کاربری خود وارد شوید <a href="/login">ورود </a>')
+	else:
+		return HttpResponse('لینک فعال سازی نامعتبر است!')
 
 
 
