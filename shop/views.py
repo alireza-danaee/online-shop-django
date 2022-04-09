@@ -3,6 +3,7 @@ from django.views.generic import DetailView , ListView
 from .models import Product , Category,Attribute
 from cart.forms import CartAddProductForm
 from .recommender import Recommender
+from django.db.models import Q
 # Create your views here.
 
 
@@ -79,43 +80,23 @@ class OfferList(ListView):
 		context['form'] = CartAddProductForm()
 		return context
 
-	
+
+class SearchList(ListView):
+	template_name = 'product/search_list.html'
+	paginate_by = 1
+	def get_queryset(self): # new
+		search = self.request.GET.get('q')
+		product = Product.objects.filter(Q(name__icontains=search) | Q(description__icontains=search))
+		return product
+
+	def get_context_data(self , **kwargs):
+		context = super().get_context_data(**kwargs)
+		context['search'] = self.request.GET.get('q')
+		return context
+
+
+
 def privacy_policy(request):
 	return render(request , "product/privacy_policy.html")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
-
-	
 
 

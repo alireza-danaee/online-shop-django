@@ -18,8 +18,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path , include , re_path
 from django.contrib.auth import views
-# from django.conf import settings
-# from django.conf.urls.static import static
+from django.conf import settings
+from django.conf.urls.static import static
 
 from account.views import Register ,activate
 
@@ -35,9 +35,10 @@ urlpatterns = [
     path('' , include('shop.urls')),
     path('register/', Register.as_view(), name='register'),
     path('activate/<uidb64>/<token>/', activate, name='activate'),
+    path('comment/', include('comment.urls')),
 
 ]
 
 
 
-# urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1433,7 +1433,7 @@
      -o-transition: all .3s ease-in-out;
      -ms-transition: all .3s ease-in-out;
 }
- .footer-link ul li a::before {
+ /* .footer-link ul li a::before {
      font-family: Sahel,sans-serif;
      content: "\f105";
      position: absolute;
@@ -1445,7 +1445,7 @@
      -moz-transition: all .3s ease-in-out;
      -o-transition: all .3s ease-in-out;
      -ms-transition: all .3s ease-in-out;
-}
+} */
  .footer-link ul li a:hover::before {
      left: 5px;
 }

@@ -1,5 +1,7 @@
 from django.db import models
 from django.urls import reverse
+from django.contrib.contenttypes.fields import GenericRelation
+from comment.models import Comment
 # Create your models here.
 
 
@@ -42,6 +44,7 @@ class Product(models.Model):
     category = models.ForeignKey(Category , on_delete=models.CASCADE , verbose_name="دسته بندی", related_name="products") 
     created = models.DateField(auto_now_add=True,verbose_name="تاریخ ثبت")
     updated = models.DateField(auto_now=True , verbose_name="تاریخ بروزرسانی")
+    comments = GenericRelation(Comment)
 
 
     class Meta:

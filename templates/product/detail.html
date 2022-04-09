@@ -3,6 +3,7 @@
 {% load static %}
 {% load humanize %}
 {% load widget_tweaks %}
+{% load comment_tags %}  
 
 
 {% block title %}
@@ -157,6 +158,13 @@
 		{% endif %}
 	</div>
 </div>
-
+<div class="container">
+<div class="row justify-content-center" dir="rtl">
+	<div class="col-8">
+		
+		{% render_comments object request %}
+	</div>
+</div>
+</div>
 {% endblock %}
  

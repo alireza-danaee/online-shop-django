@@ -1,0 +1,85 @@
+{% extends 'product/base.html' %}
+{% load humanize %}
+{% load widget_tweaks %}
+
+
+
+
+
+{% block content %}
+
+
+<div class="categories-shop">
+    <div class="container">
+        <div class="row" dir="rtl">
+            {% for product in object_list %}
+            <div class="col-lg-4 col-md-4 col-sm-6 mt-2 ">
+                <section class="neumorphism" style="background-color: white;">
+
+
+                    <div class="card" style="border-radius: 15px;">
+                        <div class="bg-image hover-overlay ripple ripple-surface ripple-surface-light" data-mdb-ripple-color="light" style="width: 100%; height: 170px;">
+                            <img src="{{product.image.url}}" style="border-top-left-radius: 15px; border-top-right-radius: 15px;height:150px; width:100%" class="img-fluid" alt="{{product.name}}" />
+                            <a href="#!">
+                                <div class="mask"></div>
+                            </a>
+                        </div>
+                        <div class="card-body pb-0">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <p class="text-dark">{{product.name}}</p>
+                                    <p class="small text-muted">{{product.category}}</p>
+                                </div>
+                                <!-- <div>
+                                    <div class="d-flex flex-row justify-content-end mt-1 mb-4 text-danger">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <p class="small text-muted">Rated 4.0/5</p>
+                                </div> -->
+                            </div>
+                        </div>
+                        <hr class="my-0" />
+                        <div class="card-body pb-0">
+                            <div class="d-flex justify-content-between">
+                                <p class="text-dark">{{product.price|intcomma}} تومان</p>
+                                <p class="text-dark">#### 8787</p>
+                            </div>
+                            {% if product.status == 'a' %}
+                            <p class="badge bg-success text-light" style="font-size: 16px;">موجود</p>
+                            {% elif product.status == 'u' %}
+                            <p class="badge bg-danger text-light" style="font-size: 16px;">ناموجود</p>
+                            {% else %}
+                            <p class="badge bg-warning text-light" style="font-size: 16px;">قابل سفارش</p>
+                            {% endif %}
+                        </div>
+
+                        <hr class="my-0" />
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center pb-2 mb-1">
+                                <a href="{% url 'shop:product_detail' product.slug %}">
+                                <button type="button" class="btn btn-dark mb-3">مشاهده</button>
+                                </a>
+                                <form action="{% url 'cart:cart_add' product.id %}" method="POST">{% csrf_token %}
+                                    <div class="form-group quantity-box">
+                                        <!-- <label class="control-label">تعداد</label> -->
+                                        {{form.quantity|attr:"value:1"|add_class:"class_quantity_1"}}
+                                        <button type="submit" class="btn btn-success">افزودن به سبد خرید</button>
+                                    </div>
+                                </form>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

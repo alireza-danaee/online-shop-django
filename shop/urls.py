@@ -16,4 +16,5 @@ urlpatterns = [
     path('category/<slug:slug>' , views.CategoryList.as_view() , name='category_list'),
     path('offer/' , views.OfferList.as_view() , name='offer_list'),
     path('privacy-policy/',views.privacy_policy,name="privacy-policy"),
+    path ('search/' , views.SearchList.as_view() , name='search'),
 ]

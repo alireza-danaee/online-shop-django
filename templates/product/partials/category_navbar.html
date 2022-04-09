@@ -28,6 +28,13 @@
                 <li class="nav-item active"><a class="nav-link" href="#">ارتباط با ما</a></li>
             </ul>
         </div>
+        <form class="form-inline justify-content-center "  action="{% url 'shop:search' %}" method="get" style="margin: auto;">
+            <input type="search" id="formsearch" class="form-control text-right" placeholder="...جست و جو" name="q" />
+            
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-search"></i>
+              </button>
+        </form>
         <!-- /.navbar-collapse -->
 
         <!-- Start Atribute Navigation -->
