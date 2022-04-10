@@ -62,3 +62,7 @@ class Attribute(models.Model):
     name = models.CharField(max_length=256,verbose_name="نام ویژگی")
     value = models.CharField(max_length=256,verbose_name="مقدار ویژگی")
     attribute = models.ForeignKey(Product , related_name="triat" , on_delete=models.CASCADE)
+
+
+
+

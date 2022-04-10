@@ -11,7 +11,12 @@
 
 <div class="categories-shop">
     <div class="container">
-        <div class="row" dir="rtl">
+        <div class="row justify-content-center">
+        <div class="alert alert-info col-8 text-center " role="alert" >
+           <h3> :عبارت جستجو شده</h3><span>{{search}}</span>
+        </div>
+        </div>
+        <div class="row mt-3" dir="rtl">
             {% for product in object_list %}
             <div class="col-lg-4 col-md-4 col-sm-6 mt-2 ">
                 <section class="neumorphism" style="background-color: white;">
@@ -75,10 +80,26 @@
                     </div>
                 </section>
             </div>
+            
+        
+                
+            
             {% endfor %}
         </div>
     </div>
 </div>
+{% if not object_list %}
+<div class="container">
+<div class="row justify-content-center">
+    <div class="col-8">
+        <h2 class="text-center">متاسفانه عبارت شما یافت نشد</h2>
+        
+        <a href="{% url 'shop:product_list' %}"><button class="btn btn-info ml-4 mb-5" >بازگشت به صفحه اصلی</button></a>
+        
+    </div>
+</div>
+</div>
+{% endif %}
 
 
 

@@ -26,6 +26,7 @@ class Comment(models.Model):
         )
     posted = models.DateTimeField(default=timezone.now, editable=False)
     edited = models.DateTimeField(auto_now=True)
+    permission = models.BooleanField(default=False)
 
     objects = CommentManager()
 
