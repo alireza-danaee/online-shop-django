@@ -3,11 +3,11 @@
 {% load static %}
 {% load humanize %}
 {% load widget_tweaks %}
-{% load comment_tags %}  
+{% load crispy_forms_tags %}
 
 
 {% block title %}
- خرید {{object.name}}
+ خرید {{product.name}}
 
 {% endblock %}
 
@@ -21,10 +21,10 @@
 			<div class="col-xl-5 col-lg-5 col-md-6">
 				<div id="carousel-example-1" class="single-product-slider carousel slide" data-ride="carousel">
 					<div class="carousel-inner" role="listbox">
-						<div class="carousel-item active"> <img class="d-block w-100" src="{{object.image.url}}" alt="{{object.name}}"> </div>
-						<div class="carousel-item"> <img class="d-block w-100" src="{{object.image2.url}}" alt="{{object.name}}"> </div>
-						<div class="carousel-item"> <img class="d-block w-100" src="{{object.image3.url}}" alt="{{object.name}}"> </div>
-						<div class="carousel-item"> <img class="d-block w-100" src="{{object.image4.url}}" alt="{{object.name}}"> </div>
+						<div class="carousel-item active"> <img class="d-block w-100" src="{{product.image.url}}" alt="{{product.name}}"> </div>
+						<div class="carousel-item"> <img class="d-block w-100" src="{{product.image2.url}}" alt="{{product.name}}"> </div>
+						<div class="carousel-item"> <img class="d-block w-100" src="{{product.image3.url}}" alt="{{product.name}}"> </div>
+						<div class="carousel-item"> <img class="d-block w-100" src="{{product.image4.url}}" alt="{{product.name}}"> </div>
 					</div>
 					<a class="carousel-control-prev" href="#carousel-example-1" role="button" data-slide="prev"> 
 					<i class="fa fa-angle-left" aria-hidden="true"></i>
@@ -36,16 +36,16 @@
 				</a>
 					<ol class="carousel-indicators">
 						<li data-target="#carousel-example-1" data-slide-to="0" class="active">
-							<img class="d-block w-100 img-fluid" src="{{object.image.url}}" alt="{{object.name}}" />
+							<img class="d-block w-100 img-fluid" src="{{product.image.url}}" alt="{{product.name}}" />
 						</li>
 						<li data-target="#carousel-example-1" data-slide-to="1">
-							<img class="d-block w-100 img-fluid" src="{{object.image2.url}}" alt="{{object.name}}" />
+							<img class="d-block w-100 img-fluid" src="{{product.image2.url}}" alt="{{product.name}}" />
 						</li>
 						<li data-target="#carousel-example-1" data-slide-to="2">
-							<img class="d-block w-100 img-fluid" src="{{object.image3.url}}" alt="{{object.name}}" />
+							<img class="d-block w-100 img-fluid" src="{{product.image3.url}}" alt="{{product.name}}" />
 						</li>
 						<li data-target="#carousel-example-1" data-slide-to="3">
-							<img class="d-block w-100 img-fluid" src="{{object.image4.url}}" alt="{{object.name}}" />
+							<img class="d-block w-100 img-fluid" src="{{product.image4.url}}" alt="{{product.name}}" />
 						</li>
 					</ol>
 				</div>
@@ -53,16 +53,16 @@
 			<div class="col-xl-7 col-lg-7 col-md-6">
 				<div class="single-product-details">
 					<div>
-					<h2 style="float: right;">{{object.name}}</h2>
+					<h2 style="float: right;">{{product.name}}</h2>
 					</div>
 					<br>
 					<hr>
 					<div>
-					<h5 style="float: right;">{{ object.price|intcomma }} تومان</h5>
+					<h5 style="float: right;">{{ product.price|intcomma }} تومان</h5>
 					
-					{% if object.status == 'a' %}
+					{% if product.status == 'a' %}
 					<p>موجودی:<small class="text-success" style="font-size: 16px;">موجود</small></p>
-					{% elif object.status == 'c' %}
+					{% elif product.status == 'c' %}
 					<p>موجودی:<small class="text-warning" style="font-size: 16px;">قابل سفارش</small></p>
 					<div class="alert alert-warning text-center" role="alert">
 						توجه:محصولاتی که قابل سفارش هستند بین دو الی چهار هفته کاری برای شما ارسال میشود
@@ -80,9 +80,9 @@
 					<br>
 					<hr>
 					<div>
-					<p style="float: right;" dir="rtl">{{object.description|safe}}</p>
+					<p style="float: right;" dir="rtl">{{product.description|safe}}</p>
 					</div>
-					<form action="{% url 'cart:cart_add' object.id %}" method="POST">{% csrf_token %}
+					<form action="{% url 'cart:cart_add' product.id %}" method="POST">{% csrf_token %}
 					<ul>
 						<li>
 							<div class="form-group quantity-box">
@@ -118,7 +118,7 @@
 			<div class="col-8 text-center" > 
 				<table class="table table-striped table-danger">
 					<thead>
-						<tr>مشخصات {{object.name}}</tr>
+						<tr>مشخصات {{product.name}}</tr>
 					</thead>
 					{% for triat in triats %}
 					<tbody>
@@ -158,13 +158,51 @@
 		{% endif %}
 	</div>
 </div>
-<div class="container">
-<div class="row justify-content-center" dir="rtl">
-	<div class="col-8">
+{% if user.is_authenticated %}
+<div class="d-flex justify-content-center" dir="rtl">
+	<div class="card shadow my-3 p-5 w-sm-75 w-75" >
+			<h3 class="text-right">نظر خود را وارد کنید:</h3>
+			<form method="POST">{% csrf_token %}
+				
+					{{comment_form.text}}
+					<button class="btn btn-primary mt-2">ارسال</button>
+				  
+			</form>
 		
-		{% render_comments object request %}
 	</div>
 </div>
+{% else %}
+
+<div class="d-flex justify-content-center">
+	<div class="card shadow my-3 p-5 w-sm-75 w-75" style="height: 185px;" dir="rtl">
+			<h3 class="text-right text-center">برای ارسال نظر باید ثبت نام کنید یا وارد شوید</h3>
+			<div class="col text-center  ">
+				
+			<a href="{% url 'register' %}"><button class="btn btn-info mt-1" ><i class="fa fa-user-plus" aria-hidden="true"></i> ثبت نام</button></a>
+			
+			
+			<a href="{% url 'login' %}"><button class="btn btn-info mt-1"><i class="fa fa-sign-in" aria-hidden="true"></i> ورود</button></a>
+			
+			</div>
+		
+	</div>
+</div>
+
+{% endif %}
+<div class="d-flex justify-content-center" >
+	<div class="card shadow my-3 p-5 w-sm-75 w-75">
+		<h2 class="mb-5 text-right">:نظرات</h2>
+		{% for comment in comments %}
+			<div class="border-bottom mb-3" >
+				<h5 class="mb-3 text-right" >{{ comment.user.get_full_name }}</h5>
+				<div class="text-right">
+				<p >{{ comment.text|linebreaks }}</p>
+				</div>
+			</div>
+			{% empty %}
+			<h3 class="text-center">هیچ نظری تاکنون ثبت نشده است</h3>
+		{% endfor %}
+	</div>
 </div>
 {% endblock %}
  

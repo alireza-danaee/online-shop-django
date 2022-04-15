@@ -35,8 +35,7 @@ urlpatterns = [
     path('' , include('shop.urls')),
     path('register/', Register.as_view(), name='register'),
     path('activate/<uidb64>/<token>/', activate, name='activate'),
-    path('comment/', include('comment.urls')),
-
+    
 ]
 
 

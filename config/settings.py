@@ -37,15 +37,19 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    #local app
     'account.apps.AccountConfig',
     'shop.apps.ShopConfig',
     'cart.apps.CartConfig',
     'orders.apps.OrdersConfig',
     'coupons.apps.CouponsConfig',
+    'comments.apps.CommentsConfig',
+
     'django.contrib.humanize',
     'widget_tweaks',
     'crispy_forms',
-    'comment',
+    
 ]
 
 
@@ -159,8 +163,8 @@ LOGOUT_REDIRECT_URL = 'shop:product_list'
 USE_THOUSAND_SEPARATOR = True
 NUMBER_GROUPING=3
 
-# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 
 

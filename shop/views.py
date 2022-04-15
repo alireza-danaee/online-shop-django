@@ -4,6 +4,7 @@ from .models import Product , Category,Attribute
 from cart.forms import CartAddProductForm
 from .recommender import Recommender
 from django.db.models import Q
+from comments.forms import CommentForm
 # Create your views here.
 
 
@@ -28,22 +29,52 @@ class ProductList(ListView):
 
 
 
-class ProductDetail(DetailView):
-	template_name = 'product/detail.html'
-	def get_object(self):
-		global product
-		slug = self.kwargs.get('slug')
-		product = get_object_or_404(Product.objects.all() , slug=slug)
-		return product
+# class ProductDetail(DetailView):
+# 	template_name = 'product/detail.html'
+# 	def get_object(self):
+# 		global product
+# 		slug = self.kwargs.get('slug')
+# 		product = get_object_or_404(Product.objects.all() , slug=slug)
+# 		return product
 	
-	def get_context_data(self, **kwargs):
-		r = Recommender()
-		recommended_products = r.suggest_product_for([product] , 4)
-		context = super().get_context_data(**kwargs)
-		context['form'] = CartAddProductForm()
-		context['recommended_products'] = recommended_products
-		context['triats'] = Attribute.objects.filter(attribute=product)
-		return context
+# 	def get_context_data(self, **kwargs):
+# 		r = Recommender()
+# 		recommended_products = r.suggest_product_for([product] , 4)
+# 		context = super().get_context_data(**kwargs)
+# 		context['form'] = CartAddProductForm()
+# 		context['recommended_products'] = recommended_products
+# 		context['triats'] = Attribute.objects.filter(attribute=product)
+# 		return context
+
+
+def product_detail(request , slug):
+	product = get_object_or_404(Product , slug=slug)
+	r = Recommender()
+	recommended_products = r.suggest_product_for([product] , 4)
+	triats = Attribute.objects.filter(attribute=product)
+	form = CartAddProductForm()
+	product_comments = product.comments.all()
+	if request.method == "POST":
+		comment_form = CommentForm(request.POST)
+		if comment_form.is_valid():
+			new_comment = comment_form.save(commit=False)
+			new_comment.product = product
+			new_comment.user = request.user
+			new_comment.save()
+	else:
+		comment_form = CommentForm()
+
+	context = {
+		"product":product,
+		"recommended_products":recommended_products,
+		"form":form,
+		"triats":triats,
+		"comment_form":CommentForm(),
+		"comments":product_comments,
+
+	}
+	return render(request , 'product/detail.html' , context)
+
 
 
 
