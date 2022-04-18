@@ -5,11 +5,7 @@ from cart.forms import CartAddProductForm
 from .recommender import Recommender
 from django.db.models import Q
 from comments.forms import CommentForm
-# Create your views here.
-
-
-
-
+from django.core.mail import EmailMessage
 
 
 
@@ -25,29 +21,11 @@ class ProductList(ListView):
 		context['offers'] = Product.objects.filter(pishnahad=True).order_by('?')[:3]
 		context['form'] = CartAddProductForm()
 		return context
-	
 
-
-
-# class ProductDetail(DetailView):
-# 	template_name = 'product/detail.html'
-# 	def get_object(self):
-# 		global product
-# 		slug = self.kwargs.get('slug')
-# 		product = get_object_or_404(Product.objects.all() , slug=slug)
-# 		return product
-	
-# 	def get_context_data(self, **kwargs):
-# 		r = Recommender()
-# 		recommended_products = r.suggest_product_for([product] , 4)
-# 		context = super().get_context_data(**kwargs)
-# 		context['form'] = CartAddProductForm()
-# 		context['recommended_products'] = recommended_products
-# 		context['triats'] = Attribute.objects.filter(attribute=product)
-# 		return context
 
 
 def product_detail(request , slug):
+	user_email = request.user.email
 	product = get_object_or_404(Product , slug=slug)
 	r = Recommender()
 	recommended_products = r.suggest_product_for([product] , 4)
@@ -61,6 +39,17 @@ def product_detail(request , slug):
 			new_comment.product = product
 			new_comment.user = request.user
 			new_comment.save()
+			if user_email:
+				mail_subject = "دریافت دیدگاه شما "
+			message = """دیدگاه شما دریافت شد و به زودی به آن پاسخ میدهیم با تشکر از شما
+			مگا گیم
+			"""
+			email = EmailMessage(
+						mail_subject,
+						message,
+						to=[user_email]
+			)
+			email.send()
 	else:
 		comment_form = CommentForm()
 
@@ -74,12 +63,6 @@ def product_detail(request , slug):
 
 	}
 	return render(request , 'product/detail.html' , context)
-
-
-
-
-
-
 
 
 

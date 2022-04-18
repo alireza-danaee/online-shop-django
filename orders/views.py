@@ -3,7 +3,7 @@ from .forms import OrderCreateForm
 from .models import OrderItem
 from cart.cart import Cart
 from .tasks import order_created
-# Create your views here.
+
 
 
 

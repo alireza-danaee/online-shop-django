@@ -4,7 +4,6 @@ from .cart import Cart
 from .forms import CartAddProductForm
 from shop.models import Product
 from coupons.forms import CouponApplyForm
-# Create your views here.
 
 
 
@@ -23,7 +22,6 @@ def cart_add(request, product_id):
         return redirect('cart:cart_detail')
 
 
-
 @require_POST
 def cart_remove(request , product_id):
     cart = Cart(request)
@@ -32,8 +30,6 @@ def cart_remove(request , product_id):
     request.session['coupon_id'] = None
     return redirect('cart:cart_detail')
         
-
-
 
 def cart_detail(request):
     cart = Cart(request)

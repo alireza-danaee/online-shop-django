@@ -2,16 +2,19 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView,CreateView,UpdateView,DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
-
-
 from .mixins import AccessMixin , ProductAccessMixin , CategoryAccessMixin,CouponAccessMixin
 from shop.models import Product ,Category
 from coupons.models import Coupons
 from orders.models import Order , OrderItem
 from account.models import User
-
-# Create your views here.
-
+from django.http import HttpResponse
+from .forms import SignupForm
+from django.contrib.sites.shortcuts import get_current_site
+from django.utils.encoding import force_bytes, force_str
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.template.loader import render_to_string
+from .tokens import account_activation_token
+from django.core.mail import EmailMessage
 
 
 
@@ -75,7 +78,6 @@ class CategoryDelete(ProductAccessMixin,DeleteView):
 	template_name = 'registration/category/category_delete.html'
 
 
-
 class CouponListAdmin(LoginRequiredMixin,CouponAccessMixin,ListView):
 	queryset = Coupons.objects.all()
 	template_name = 'registration/coupon/coupon_list.html'
@@ -84,9 +86,6 @@ class CouponListAdmin(LoginRequiredMixin,CouponAccessMixin,ListView):
 class CouponCreate(LoginRequiredMixin,CouponAccessMixin,CreateView):
 	model = Coupons
 	template_name = 'registration/coupon/coupon_create_update.html'
-
-	
-
 
 
 class OrderList(LoginRequiredMixin,ListView):
@@ -105,7 +104,6 @@ def order_history_user(request ):
 	}
 	return render(request,'registration/order/order_detail.html',context)
 
-
 		
 def order_history_admin(request ,id ):
 	order = OrderItem.objects.filter(user_id=id)
@@ -115,18 +113,6 @@ def order_history_admin(request ,id ):
 	return render(request,'registration/order/order_history_admin.html',context)
 	
 
-
-
-
-
-
-
-
-
-
-
-
-
 class Profile(UpdateView):
 	model = User
 	fields = ['username','first_name','last_name','email']
@@ -134,31 +120,6 @@ class Profile(UpdateView):
 	success_url = reverse_lazy('account:profile')
 	def get_object(self):
 		return User.objects.get(pk = self.request.user.pk)
-
-
-
-
-
-
-
-
-
-
-
-
-from django.http import HttpResponse
-
-
-from .forms import SignupForm
-from django.contrib.sites.shortcuts import get_current_site
-from django.utils.encoding import force_bytes, force_str
-from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-from django.template.loader import render_to_string
-from .tokens import account_activation_token
-
-from django.core.mail import EmailMessage
-
-
 
 
 class Register(CreateView):
