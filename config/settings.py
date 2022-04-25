@@ -45,7 +45,9 @@ INSTALLED_APPS = [
     'orders.apps.OrdersConfig',
     'coupons.apps.CouponsConfig',
     'comments.apps.CommentsConfig',
+    'zarinpal.apps.ZarinpalConfig',
 
+    #TPP
     'django.contrib.humanize',
     'widget_tweaks',
     'crispy_forms',

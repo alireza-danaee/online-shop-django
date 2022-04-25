@@ -16,7 +16,7 @@ Including another URLconf
 
 
 from django.contrib import admin
-from django.urls import path , include , re_path
+from django.urls import path , include 
 from django.contrib.auth import views
 from django.conf import settings
 from django.conf.urls.static import static
@@ -27,14 +27,16 @@ from account.views import Register ,activate
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('' , include('shop.urls')),
     path('login/', views.LoginView.as_view(), name='login'),
+    path('zarinpal/', include('zarinpal.urls')),
     path('account/', include('account.urls')),
     path('cart/' , include('cart.urls')),
     path('orders/' , include('orders.urls')),
     path('coupons/' , include('coupons.urls')),
-    path('' , include('shop.urls')),
     path('register/', Register.as_view(), name='register'),
     path('activate/<uidb64>/<token>/', activate, name='activate'),
+    
     
 ]
 

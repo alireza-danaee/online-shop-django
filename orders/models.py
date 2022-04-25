@@ -62,6 +62,9 @@ class Order(models.Model):
         verbose_name = 'سفارش'
         verbose_name_plural = 'سفارشات'
 
+    def get_total_cost(self):
+        return sum(item.get_cost() for item in self.items.all())
+
 
 
 

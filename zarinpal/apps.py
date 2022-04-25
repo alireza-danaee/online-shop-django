@@ -1,7 +1,6 @@
 from django.apps import AppConfig
 
 
-class CommentsConfig(AppConfig):
+class ZarinpalConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'comments'
-    verbose_name = "نظرات"
+    name = 'zarinpal'

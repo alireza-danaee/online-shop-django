@@ -45,7 +45,6 @@ class Product(models.Model):
     updated = models.DateField(auto_now=True , verbose_name="تاریخ بروزرسانی")
     
 
-
     class Meta:
         verbose_name = "محصول"
         verbose_name_plural = "محصولات"
@@ -62,6 +61,9 @@ class Attribute(models.Model):
     value = models.CharField(max_length=256,verbose_name="مقدار ویژگی")
     attribute = models.ForeignKey(Product , related_name="triat" , on_delete=models.CASCADE)
 
+    class Meta:
+        verbose_name = "ویژگی"
+        verbose_name_plural = "ویژگی ها"
 
 
 

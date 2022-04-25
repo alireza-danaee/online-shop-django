@@ -25,7 +25,7 @@ class ProductList(ListView):
 
 
 def product_detail(request , slug):
-	user_email = request.user.email
+	# user_email = request.user.email
 	product = get_object_or_404(Product , slug=slug)
 	r = Recommender()
 	recommended_products = r.suggest_product_for([product] , 4)
@@ -39,7 +39,7 @@ def product_detail(request , slug):
 			new_comment.product = product
 			new_comment.user = request.user
 			new_comment.save()
-			if user_email:
+			if request.user.email:
 				mail_subject = "دریافت دیدگاه شما "
 			message = """دیدگاه شما دریافت شد و به زودی به آن پاسخ میدهیم با تشکر از شما
 			مگا گیم
@@ -47,7 +47,7 @@ def product_detail(request , slug):
 			email = EmailMessage(
 						mail_subject,
 						message,
-						to=[user_email]
+						to=[request.user.email]
 			)
 			email.send()
 	else:

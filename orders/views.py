@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from .forms import OrderCreateForm 
 from .models import OrderItem
 from cart.cart import Cart
@@ -20,8 +20,8 @@ def order_create(request):
                 OrderItem.objects.create(order=order , product=item['product'] , price=item['price'] , quantity=item['quantity'],user=user)
             cart.clear()
             order_created.delay(order.id)
-            return render(request , 'orders/created_order.html', {'order':order})
-
+            request.session['order_id'] = order.id 
+            return redirect('zarinpal:request')
     else:
         form = OrderCreateForm()
     return render(request , 'orders/create_order.html' , {'form' : form , 'cart':cart})

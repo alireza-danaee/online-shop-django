@@ -15,6 +15,8 @@ class Comment(models.Model):
 
     class Meta:
         ordering = ['created_on']
+        verbose_name = "نظر"
+        verbose_name_plural = "نظرات"
 
     def __str__(self):
         return 'Comment {} by {}'.format(self.text, self.user)

@@ -26,8 +26,8 @@ urlpatterns = [
     
     path('logout/', views.LogoutView.as_view(), name='logout'),
 
-#     path('password_change/', views.PasswordChangeView.as_view(), name='password_change'),
-#     path('password_change/done/', views.PasswordChangeDoneView.as_view(), name='password_change_done'),
+    path('password_change/', views.PasswordChangeView.as_view(), name='password_change'),
+    path('password_change/done/', views.PasswordChangeDoneView.as_view(), name='password_change_done'),
 
 #     path('password_reset/', views.PasswordResetView.as_view(), name='password_reset'),
 #     path('password_reset/done/', views.PasswordResetDoneView.as_view(), name='password_reset_done'),
@@ -55,7 +55,7 @@ urlpatterns += [
 
     path ('coupon/list/' ,CouponListAdmin.as_view() , name = 'coupon-list'),
     path ('coupon/create/' ,CouponCreate.as_view() , name = 'coupon-create'),
-
+    #-----------------------ORDERS---------------------------
     path ('order/list/' ,OrderList.as_view() , name = 'order-list'),
     path ('order/history/' ,order_history_user , name = 'order-history-user'),
     path ('order/history/<int:order_user_id>/' ,order_history_admin , name = 'order-history-admin'),
