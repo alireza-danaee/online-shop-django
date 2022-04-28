@@ -113,58 +113,40 @@
 				</div>
 			</div>
 		</div>
-		{% if triats %}
-		<div class="row mt-5 justify-content-center" >
-			<div class="col-8 text-center" > 
-				<table class="table table-striped table-danger">
-					<thead>
-						<tr>مشخصات {{product.name}}</tr>
-					</thead>
-					{% for triat in triats %}
-					<tbody>
-						<td style="color: black;">{{triat.name}}</td>
-						<td style="color: black;">{{triat.value}}</td>
-					</tbody>
-					{% endfor %}
-				</table>
-			</div>
-		</div>
-		{% endif %}
-		{% if recommended_products %}
-		<div class="row text-center">
-			<div class="col12 ">
-				<h1 class="text-center">
-					کالاهای پیشنهادی
-				</h1>
+		<div class="row justify-content-center mt-5">
+			<ul class="nav nav-tabs shadow" id="myTab" role="tablist">
+				<li class="nav-item">
+				  <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">ویژگی های محصول</a>
+				</li>
+				<li class="nav-item">
+				  <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">نظرات</a>
+				</li>
 				
-			</div>
-		</div>
-		<div class="row mt-5">
-			
-			{% for product in recommended_products %}
-		<div class="col-6 col-lg-2">
-			<div class="card" style="width:192px; height:298px;">
-				<img src="{{product.image.url}}" class="card-img-top" alt="{{product.name}}" width="150px" height="150px">
-				<div class="card-body">
-				<p class="card-text" style="color: black;">{{product.name}}</p>
-				<p style="color: black;">{{product.price|intcomma}} تومان</p>
-				
+			  </ul>
+			  <div class="tab-content" id="myTabContent">
+				<div class="tab-pane fade show active text-center mt-4" id="home" role="tabpanel" aria-labelledby="home-tab">
+					<table class="table table-striped table-danger">
+						<thead>
+							<tr>مشخصات {{product.name}}</tr>
+						</thead>
+						{% for triat in triats %}
+						<tbody>
+							<td style="color: black;">{{triat.name}}</td>
+							<td style="color: black;">{{triat.value}}</td>
+						</tbody>
+						{% endfor %}
+					</table>
 				</div>
-			</div>
-		</div>
-		{% endfor %}
-		
-		</div>
-		{% endif %}
-	</div>
-</div>
-{% if user.is_authenticated %}
+				<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+					{% if user.is_authenticated %}
 <div class="d-flex justify-content-center" dir="rtl">
 	<div class="card shadow my-3 p-5 w-sm-75 w-75" >
 			<h3 class="text-right">نظر خود را وارد کنید:</h3>
 			<form method="POST">{% csrf_token %}
 				
 					{{comment_form.text}}
+					<script src='https://www.google.com/recaptcha/api.js'></script>
+    				<div class="g-recaptcha" data-sitekey="6Le2qqcfAAAAAKNT8xEyEnEEBv9Lgdmc2Le4Z55a"></div>
 					<button class="btn btn-primary mt-2">ارسال</button>
 				  
 			</form>
@@ -202,6 +184,38 @@
 			{% empty %}
 			<h3 class="text-center">هیچ نظری تاکنون ثبت نشده است</h3>
 		{% endfor %}
+	</div>
+</div>
+				</div>
+				
+			  </div>
+		</div>
+		{% if recommended_products %}
+		<div class="row text-center">
+			<div class="col12 ">
+				<h1 class="text-center">
+					کالاهای پیشنهادی
+				</h1>
+				
+			</div>
+		</div>
+		<div class="row mt-5">
+			
+			{% for product in recommended_products %}
+		<div class="col-6 col-lg-2">
+			<div class="card" style="width:192px; height:298px;">
+				<img src="{{product.image.url}}" class="card-img-top" alt="{{product.name}}" width="150px" height="150px">
+				<div class="card-body">
+				<p class="card-text" style="color: black;">{{product.name}}</p>
+				<p style="color: black;">{{product.price|intcomma}} تومان</p>
+				
+				</div>
+			</div>
+		</div>
+		{% endfor %}
+		
+		</div>
+		{% endif %}
 	</div>
 </div>
 {% endblock %}

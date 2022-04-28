@@ -23,9 +23,7 @@ class ProductList(ListView):
 		return context
 
 
-
 def product_detail(request , slug):
-	# user_email = request.user.email
 	product = get_object_or_404(Product , slug=slug)
 	r = Recommender()
 	recommended_products = r.suggest_product_for([product] , 4)
@@ -65,7 +63,6 @@ def product_detail(request , slug):
 	return render(request , 'product/detail.html' , context)
 
 
-
 class CategoryList(ListView):
 	template_name = 'product/category_list.html'
 	paginate_by = 6
@@ -81,7 +78,6 @@ class CategoryList(ListView):
 		context['offers'] = Product.objects.filter(pishnahad=True).order_by('?')[:3]
 		context['form'] = CartAddProductForm()
 		return context
-
 
 
 class OfferList(ListView):
@@ -108,7 +104,6 @@ class SearchList(ListView):
 		context['search'] = self.request.GET.get('q')
 		context['form'] = CartAddProductForm()
 		return context
-
 
 
 def privacy_policy(request):

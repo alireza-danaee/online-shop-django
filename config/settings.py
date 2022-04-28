@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'widget_tweaks',
     'crispy_forms',
+    'captcha',
     
 ]
 
@@ -187,3 +188,7 @@ EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 
 
+#reCAPTCHA
+GOOGLE_RECAPTCHA_SECRET_KEY = "6Le2qqcfAAAAAB8FuNnYrug86xqKopFap_q9rucW"
+RECAPTCHA_PUBLIC_KEY = '6Le2qqcfAAAAAKNT8xEyEnEEBv9Lgdmc2Le4Z55a'
+RECAPTCHA_PRIVATE_KEY = '6Le2qqcfAAAAAB8FuNnYrug86xqKopFap_q9rucW'

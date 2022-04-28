@@ -20,7 +20,7 @@ from django.urls import path , include
 from django.contrib.auth import views
 from django.conf import settings
 from django.conf.urls.static import static
-
+from account.views import MyLoginView
 from account.views import Register ,activate
 
 
@@ -28,7 +28,7 @@ from account.views import Register ,activate
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('' , include('shop.urls')),
-    path('login/', views.LoginView.as_view(), name='login'),
+    path('login/', MyLoginView.as_view(), name='login'),
     path('zarinpal/', include('zarinpal.urls')),
     path('account/', include('account.urls')),
     path('cart/' , include('cart.urls')),
