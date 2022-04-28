@@ -1,234 +1,163 @@
-{% load static %}
+{% extends 'registration/base_register.html' %}
 {% load base_tags %}
 {% load widget_tweaks %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<title>Login V11</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="{% static 'registration/Login/images/icons/favicon.ico' %}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{% static 'registration/Login/vendor/bootstrap/css/bootstrap.min.css' %}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{% static 'registration/Login/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{% static 'registration/Login/fonts/Linearicons-Free-v1.0.0/icon-font.min.css' %}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{% static 'registration/Login/vendor/animate/animate.css' %}">
-<!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="{% static 'registration/Login/vendor/css-hamburgers/hamburgers.min.css' %}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{% static 'registration/Login/vendor/select2/select2.min.css' %}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{% static 'registration/Login/css/util.css' %}">
-	<link rel="stylesheet" type="text/css" href="{% static 'registration/Login/css/main.css' %}">
-	<link rel="stylesheet" type="text/css" href="{% static 'registration/Login/css/rtl.css' %}">
-<!--===============================================================================================-->
-<!-- Site Icons -->
-	<link rel="shortcut icon" href="{% static 'product/images/favicon.ico' %}" type="image/x-icon">
-	<link rel="apple-touch-icon" href="{% static 'product/images/apple-touch-icon.png' %}">
 
-	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="{% static 'product/css/bootstrap.min.css' %}">
-	<!-- Site CSS -->
-	<link rel="stylesheet" href="{% static 'product/css/style.css' %}">
-	<!-- Responsive CSS -->
-	<link rel="stylesheet" href="{% static 'product/css/responsive.css' %}">
-	<!-- Custom CSS -->
-	<link rel="stylesheet" href="{% static 'product/css/custom.css' %}">
-	<link rel="stylesheet" href="{% static 'product/owl_carousel/owl.carousel.css' %}">
-	<link rel="stylesheet" href="{% static 'product/owl_carousel/owl.theme.default.css' %}">
-	<link rel="stylesheet" href="{% static 'product/style_card_slider.css' %}">
-	<link rel="stylesheet" href="{% static 'product/single_styles.css' %}">
-	<link rel="stylesheet" href="{% static 'product/single_responsive.css' %}">
-</head>
-<body>
-	{% include 'product/partials/category_navbar.html' %}
-	<div class="limiter" style="direction: rtl; text-align: right !important;font-family: Sahel !important;">
-		{% if form.non_field_errors%}
-			<div class="errors">
+
+
+
+{% block content %}
+
+<div class="limiter" style="direction: rtl; text-align: right !important;font-family: Sahel !important;">
+	{% if form.non_field_errors%}
+		<div class="errors">
+			
+				{% for error in form.non_field_errors %}
+					<span>{{ error }}</span>
+				{% endfor %}
+			
+		</div>
+	{% endif %}
+	<div class="container-login100">
+		<div class="wrap-login100 p-l-50 p-r-50 p-t-77 p-b-30">
+			<form class="login100-form validate-form" method="POST">{% csrf_token %}
+				<span class="login100-form-title p-b-55 myfont">
+					ثبت نام در سایت
+				</span>
+
+				<div class="wrap-input100 validate-input m-b-16" data-validate = "Password is required">
+					
+					{{form.first_name|add_class:"input100 , myfont"|attr:"placeholder:نام"}}
+					{% if form.first_name.errors %}
+						<div class="errors">
 				
-					{% for error in form.non_field_errors %}
-						<span>{{ error }}</span>
-					{% endfor %}
+							{% for error in form.first_name.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						
+						</div>
+					{% endif %}
+					<span class="focus-input100"></span>
+					<span class="symbol-input100">
+						<span class="lnr lnr-user"></span>
+					</span>
+				</div>
+
+				<div class="wrap-input100 validate-input m-b-16" data-validate = "Password is required">
+					<!-- <input class="input100 myfont" type="password" name="pass" placeholder="رمز عبور"> -->
+					{{form.last_name|add_class:"input100 , myfont"|attr:"placeholder:نام خانوادگی"}}
+					{% if form.last_name.errors %}
+						<div class="errors">
 				
-			</div>
-		{% endif %}
-		<div class="container-login100">
-			<div class="wrap-login100 p-l-50 p-r-50 p-t-77 p-b-30">
-				<form class="login100-form validate-form" method="POST">{% csrf_token %}
-					<span class="login100-form-title p-b-55 myfont">
-						ثبت نام در سایت
+							{% for error in form.last_name.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						
+						</div>
+					{% endif %}
+					<span class="focus-input100"></span>
+					<span class="symbol-input100">
+						<span class="lnr lnr-user"></span>
+					</span>
+				</div>
+				<div class="wrap-input100 validate-input m-b-16" data-validate = "Password is required">
+					<!-- <input class="input100 myfont" type="password" name="pass" placeholder="رمز عبور"> -->
+					{{form.username|add_class:"input100 , myfont"|attr:"placeholder:نام کاربری"}}
+					{% if form.username.errors %}
+						<div class="errors">
+				
+							{% for error in form.username.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						
+						</div>
+					{% endif %}
+					<span class="focus-input100"></span>
+					<span class="symbol-input100">
+						<span class="lnr lnr-user"></span>
+					</span>
+				</div>
+				<div class="wrap-input100 validate-input m-b-16" data-validate = "Password is required">
+					<!-- <input class="input100 myfont" type="password" name="pass" placeholder="رمز عبور"> -->
+					{{form.email|add_class:"input100 , myfont"|attr:"placeholder:ایمیل"}}
+					{% if form.email.errors %}
+						<div class="errors">
+				
+							{% for error in form.email.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						
+						</div>
+					{% endif %}
+					<span class="focus-input100"></span>
+					<span class="symbol-input100">
+						<span class="lnr lnr-envelope"></span>
+					</span>
+				</div>
+				<div class="wrap-input100 validate-input m-b-16" data-validate = "Password is required">
+					<!-- <input class="input100 myfont" type="password" name="pass" placeholder="رمز عبور"> -->
+					{{form.password1|add_class:"input100 , myfont"|attr:"placeholder:گذرواژه"}}
+					{% if form.password1.errors %}
+						<div class="errors">
+				
+							{% for error in form.password1.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						
+						</div>
+					{% endif %}
+					<span class="focus-input100"></span>
+					<span class="symbol-input100">
+						<span class="lnr lnr-lock"></span>
+					</span>
+				</div>
+				<div class="wrap-input100 validate-input m-b-16" data-validate = "Password is required">
+					<!-- <input class="input100 myfont" type="password" name="pass" placeholder="رمز عبور"> -->
+					{{form.password2|add_class:"input100 , myfont"|attr:"placeholder:تایید گذرواژه"}}
+					{% if form.password2.errors %}
+						<div class="errors">
+				
+							{% for error in form.password2.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						
+						</div>
+					{% endif %}
+					<span class="focus-input100"></span>
+					<span class="symbol-input100">
+						<span class="lnr lnr-lock"></span>
+					</span>
+				</div>
+
+				<div class="contact100-form-checkbox m-l-4">
+					<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+					<label class="label-checkbox100 myfont" for="ckb1">
+						مرا به خاطر بسپار
+					</label>
+				</div>
+				<script src='https://www.google.com/recaptcha/api.js'></script>
+				<div class="g-recaptcha" data-sitekey="6Le2qqcfAAAAAKNT8xEyEnEEBv9Lgdmc2Le4Z55a"></div>
+				
+				<div class="container-login100-form-btn p-t-25">
+					<button class="login100-form-btn myfont">
+						ثبت نام
+					</button>
+				</div>
+
+				
+
+				<div class="text-center w-full p-t-115 myfont">
+					<span class="txt1">
+						حسابی دارید؟
 					</span>
 
-					<div class="wrap-input100 validate-input m-b-16" data-validate = "Password is required">
-						
-						{{form.first_name|add_class:"input100 , myfont"|attr:"placeholder:نام"}}
-						{% if form.first_name.errors %}
-							<div class="errors">
+					<a class="txt1 bo1 hov1 myfont" href="{% url 'login' %}">
+						وارد شوید						
+					</a>
 					
-								{% for error in form.first_name.errors %}
-									<span>{{ error }}</span>
-								{% endfor %}
-							
-							</div>
-						{% endif %}
-						<span class="focus-input100"></span>
-						<span class="symbol-input100">
-							<span class="lnr lnr-user"></span>
-						</span>
-					</div>
-
-					<div class="wrap-input100 validate-input m-b-16" data-validate = "Password is required">
-						<!-- <input class="input100 myfont" type="password" name="pass" placeholder="رمز عبور"> -->
-						{{form.last_name|add_class:"input100 , myfont"|attr:"placeholder:نام خانوادگی"}}
-						{% if form.last_name.errors %}
-							<div class="errors">
-					
-								{% for error in form.last_name.errors %}
-									<span>{{ error }}</span>
-								{% endfor %}
-							
-							</div>
-						{% endif %}
-						<span class="focus-input100"></span>
-						<span class="symbol-input100">
-							<span class="lnr lnr-user"></span>
-						</span>
-					</div>
-					<div class="wrap-input100 validate-input m-b-16" data-validate = "Password is required">
-						<!-- <input class="input100 myfont" type="password" name="pass" placeholder="رمز عبور"> -->
-						{{form.username|add_class:"input100 , myfont"|attr:"placeholder:نام کاربری"}}
-						{% if form.username.errors %}
-							<div class="errors">
-					
-								{% for error in form.username.errors %}
-									<span>{{ error }}</span>
-								{% endfor %}
-							
-							</div>
-						{% endif %}
-						<span class="focus-input100"></span>
-						<span class="symbol-input100">
-							<span class="lnr lnr-user"></span>
-						</span>
-					</div>
-					<div class="wrap-input100 validate-input m-b-16" data-validate = "Password is required">
-						<!-- <input class="input100 myfont" type="password" name="pass" placeholder="رمز عبور"> -->
-						{{form.email|add_class:"input100 , myfont"|attr:"placeholder:ایمیل"}}
-						{% if form.email.errors %}
-							<div class="errors">
-					
-								{% for error in form.email.errors %}
-									<span>{{ error }}</span>
-								{% endfor %}
-							
-							</div>
-						{% endif %}
-						<span class="focus-input100"></span>
-						<span class="symbol-input100">
-							<span class="lnr lnr-envelope"></span>
-						</span>
-					</div>
-					<div class="wrap-input100 validate-input m-b-16" data-validate = "Password is required">
-						<!-- <input class="input100 myfont" type="password" name="pass" placeholder="رمز عبور"> -->
-						{{form.password1|add_class:"input100 , myfont"|attr:"placeholder:گذرواژه"}}
-						{% if form.password1.errors %}
-							<div class="errors">
-					
-								{% for error in form.password1.errors %}
-									<span>{{ error }}</span>
-								{% endfor %}
-							
-							</div>
-						{% endif %}
-						<span class="focus-input100"></span>
-						<span class="symbol-input100">
-							<span class="lnr lnr-lock"></span>
-						</span>
-					</div>
-					<div class="wrap-input100 validate-input m-b-16" data-validate = "Password is required">
-						<!-- <input class="input100 myfont" type="password" name="pass" placeholder="رمز عبور"> -->
-						{{form.password2|add_class:"input100 , myfont"|attr:"placeholder:تایید گذرواژه"}}
-						{% if form.password2.errors %}
-							<div class="errors">
-					
-								{% for error in form.password2.errors %}
-									<span>{{ error }}</span>
-								{% endfor %}
-							
-							</div>
-						{% endif %}
-						<span class="focus-input100"></span>
-						<span class="symbol-input100">
-							<span class="lnr lnr-lock"></span>
-						</span>
-					</div>
-
-					<div class="contact100-form-checkbox m-l-4">
-						<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
-						<label class="label-checkbox100 myfont" for="ckb1">
-							مرا به خاطر بسپار
-						</label>
-					</div>
-					<script src='https://www.google.com/recaptcha/api.js'></script>
-    				<div class="g-recaptcha" data-sitekey="6Le2qqcfAAAAAKNT8xEyEnEEBv9Lgdmc2Le4Z55a"></div>
-					
-					<div class="container-login100-form-btn p-t-25">
-						<button class="login100-form-btn myfont">
-							ثبت نام
-						</button>
-					</div>
-
-					
-
-					<div class="text-center w-full p-t-115 myfont">
-						<span class="txt1">
-							حسابی دارید؟
-						</span>
-
-						<a class="txt1 bo1 hov1 myfont" href="{% url 'login' %}">
-							وارد شوید						
-						</a>
-						
-					</div>
-				</form>
-			</div>
+				</div>
+			</form>
 		</div>
 	</div>
-	
-	
+</div>
 
-	
-<!--===============================================================================================-->	
-	<script src="{% static 'registration/Login/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
-<!--===============================================================================================-->
-	<script src="{% static 'registration/Login/vendor/bootstrap/js/popper.js' %}"></script>
-	<script src="{% static 'registration/Login/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
-<!--===============================================================================================-->
-	<script src="{% static 'registration/Login/vendor/select2/select2.min.js' %}"></script>
-<!--===============================================================================================-->
-	<script src="{% static 'registration/Login/js/main.js' %}"></script>
-	<!-- ================================================================================================= -->
-	<script src="{% static 'product/js/jquery-3.2.1.min.js' %}"></script>
-    <script src="{% static 'product/js/popper.min.js' %}"></script>
-    <script src="{% static 'product/js/bootstrap.min.js' %}"></script>
-    <!-- ALL PLUGINS -->
-    <script src="{% static 'product/js/jquery.superslides.min.js' %}"></script>
-    <script src="{% static 'product/js/bootstrap-select.js' %}"></script>
-    <script src="{% static 'product/js/inewsticker.js' %}"></script>
-    <script src="{% static 'product/js/bootsnav.js' %}"></script>
-    <script src="{% static 'product/js/images-loded.min.js' %}"></script>
-    <script src="{% static 'product/js/isotope.min.js' %} "></script>
-    <script src="{% static 'product/js/owl.carousel.min.js' %}"></script>
-    <!-- <script src="js/baguetteBox.min.js"></script> -->
-    <script src="{% static 'product/js/form-validator.min.js' %} "></script>
-    <script src="{% static 'product/js/contact-form-script.js' %}"></script>
-    <script src="{% static 'product/js/custom.js' %} "></script>
-    <script src="{% static 'product/owl_carousel/owl.carousel.js' %}"></script>
-    <script src="{% static 'product/js/script_card_slider.js' %} "></script>
-
-</body>
-</html>
+{% endblock %}

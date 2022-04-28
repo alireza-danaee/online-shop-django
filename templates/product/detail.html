@@ -82,15 +82,17 @@
 					<div>
 					<p style="float: right;" dir="rtl">{{product.description|safe}}</p>
 					</div>
+					
 					<form action="{% url 'cart:cart_add' product.id %}" method="POST">{% csrf_token %}
-					<ul>
-						<li>
-							<div class="form-group quantity-box">
-								<label class="control-label">تعداد</label>
-								{{form.quantity|attr:"value:1"}}
+					{% if product.status == 'a' or product.status == 'c' %}
+					
+							<div class="form-group quantity-box" >
+								
+								<label class="control-label" style="font-size: 20px;">تعداد:</label>
+								
+								{{form.quantity|attr:"value:1"|add_class:"quantity-button"|attr:"style:width:60px"}}
+								
 							</div>
-						</li>
-					</ul>
 					
 					<div class="price-box-bar">
 						<div class="cart-and-bay-btn">
@@ -98,18 +100,9 @@
 							<button type="submit" class="btn hvr-hover rounded text-light">افزودن به سبد خرید</button>
 						</div>
 					</div>
+					{% endif %}
 					</form>
 
-					<div class="add-to-btn">
-						
-						<div class="share-bar">
-							<a class="btn hvr-hover" href="#"><i class="fab fa-facebook" aria-hidden="true"></i></a>
-							<a class="btn hvr-hover" href="#"><i class="fab fa-google-plus" aria-hidden="true"></i></a>
-							<a class="btn hvr-hover" href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a>
-							<a class="btn hvr-hover" href="#"><i class="fab fa-pinterest-p" aria-hidden="true"></i></a>
-							<a class="btn hvr-hover" href="#"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
-						</div>
-					</div>
 				</div>
 			</div>
 		</div>
@@ -146,7 +139,7 @@
 				
 					{{comment_form.text}}
 					<script src='https://www.google.com/recaptcha/api.js'></script>
-    				<div class="g-recaptcha" data-sitekey="6Le2qqcfAAAAAKNT8xEyEnEEBv9Lgdmc2Le4Z55a"></div>
+    				<div class="g-recaptcha mt-3 w-sm-50" data-sitekey="6Le2qqcfAAAAAKNT8xEyEnEEBv9Lgdmc2Le4Z55a"></div>
 					<button class="btn btn-primary mt-2">ارسال</button>
 				  
 			</form>

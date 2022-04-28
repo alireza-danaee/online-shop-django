@@ -4,11 +4,11 @@ from .cart import Cart
 from .forms import CartAddProductForm
 from shop.models import Product
 from coupons.forms import CouponApplyForm
-
+from django.conf import settings
 
 
 @require_POST
-def cart_add(request, product_id):
+def cart_add(request, product_id ,slug):
     """
     Add a product to the cart or update its quantity
     """
@@ -19,7 +19,7 @@ def cart_add(request, product_id):
         cd = form.cleaned_data
         cart.add(product , quantity=cd['quantity'] , override_quantity=cd['override'])
         request.session['coupon_id'] = None
-        return redirect('cart:cart_detail')
+        return redirect('product_detail', slug=slug)
 
 
 @require_POST
@@ -44,3 +44,7 @@ def cart_detail(request):
         'form':form_apply_code,
     }
     return render(request , 'cart/cart_detail.html' , context)
+
+
+
+
