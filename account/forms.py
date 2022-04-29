@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm , PasswordChangeForm
 from account.models import User
 from captcha.fields import ReCaptchaField
 from captcha.widgets import ReCaptchaV2Checkbox
@@ -14,4 +14,8 @@ class SignupForm(UserCreationForm):
 
 
 class MyAuthenticationForm(AuthenticationForm):
+    captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox)
+
+
+class MyPasswordChangeForm(PasswordChangeForm):
     captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox)

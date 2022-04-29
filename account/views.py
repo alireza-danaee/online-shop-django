@@ -19,8 +19,13 @@ import json
 import urllib
 from django.conf import settings
 from django.contrib import messages
-from django.contrib.auth.views import LoginView
-from account.forms import MyAuthenticationForm
+from django.contrib.auth.views import LoginView ,PasswordChangeView
+from account.forms import MyAuthenticationForm , MyPasswordChangeForm
+from django.contrib.auth.tokens import default_token_generator
+from django.contrib.auth.forms import PasswordResetForm
+from django.core.mail import send_mail, BadHeaderError
+from django.db.models.query_utils import Q
+
 
 
 
@@ -127,7 +132,7 @@ class Profile(UpdateView):
 
 
 class MyLoginView(LoginView):
-    form_class = MyAuthenticationForm
+	form_class = MyAuthenticationForm
 
 
 class Register(CreateView):
@@ -182,6 +187,52 @@ def activate(request, uidb64, token):
 		return HttpResponse('باتشکر از شما برای تایید ایمیل  اکنون میتوانید به حساب کاربری خود وارد شوید <a href="/login">ورود </a>')
 	else:
 		return HttpResponse('لینک فعال سازی نامعتبر است!')
+
+
+def password_reset_request(request):
+	if request.method == "POST":
+		password_reset_form = PasswordResetForm(request.POST)
+		if password_reset_form.is_valid():
+			''' Begin reCAPTCHA validation '''
+			recaptcha_response = request.POST.get('g-recaptcha-response')
+			url = 'https://www.google.com/recaptcha/api/siteverify'
+			values = {
+				'secret': settings.GOOGLE_RECAPTCHA_SECRET_KEY,
+				'response': recaptcha_response
+			}
+			data = urllib.parse.urlencode(values).encode()
+			req =  urllib.request.Request(url, data=data)
+			response = urllib.request.urlopen(req)
+			result = json.loads(response.read().decode())
+			''' End reCAPTCHA validation '''
+			if result['success']:
+				data = password_reset_form.cleaned_data['email']
+				associated_users = User.objects.filter(Q(email=data))
+				if associated_users.exists():
+					for user in associated_users:
+						subject = "Password Reset Requested"
+						email_template_name = "registration/password/password_reset_email.txt"
+						c = {
+						"email":user.email,
+						'domain':'127.0.0.1:7000',
+						'site_name': 'مگا گیم',
+						"uid": urlsafe_base64_encode(force_bytes(user.pk)),
+						"user": user,
+						'token': default_token_generator.make_token(user),
+						'protocol': 'http',
+						}
+						email = render_to_string(email_template_name, c)
+						try:
+							send_mail(subject, email, 'admin@example.com' , [user.email], fail_silently=False)
+						except BadHeaderError:
+							return HttpResponse('Invalid header found.')
+						return redirect ("account:password_reset_done")
+	password_reset_form = PasswordResetForm()
+	return render(request=request, template_name="registration/password/password_reset.html", context={"password_reset_form":password_reset_form})
+
+
+class MyPasswordChangeView(PasswordChangeView):
+	form_class = MyPasswordChangeForm
 
 
 

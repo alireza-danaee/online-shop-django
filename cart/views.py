@@ -8,7 +8,7 @@ from django.conf import settings
 
 
 @require_POST
-def cart_add(request, product_id ,slug):
+def cart_add(request, product_id ):
     """
     Add a product to the cart or update its quantity
     """
@@ -19,7 +19,7 @@ def cart_add(request, product_id ,slug):
         cd = form.cleaned_data
         cart.add(product , quantity=cd['quantity'] , override_quantity=cd['override'])
         request.session['coupon_id'] = None
-        return redirect('product_detail', slug=slug)
+        return redirect('cart:cart_detail')
 
 
 @require_POST

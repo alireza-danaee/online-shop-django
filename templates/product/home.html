@@ -108,6 +108,7 @@
                                 <a href="{% url 'shop:product_detail' product.slug %}">
                                 <button type="button" class="btn btn-dark mb-3">مشاهده</button>
                                 </a>
+                                {% if product.status == 'a' or product.status == 'c' %}
                                 <form action="{% url 'cart:cart_add' product.id %}" method="POST">{% csrf_token %}
                                     <div class="form-group quantity-box">
                                         <!-- <label class="control-label">تعداد</label> -->
@@ -115,7 +116,7 @@
                                         <button type="submit" class="btn btn-success">افزودن به سبد خرید</button>
                                     </div>
                                 </form>
-                                
+                                {% endif %}
                             </div>
                         </div>
                     </div>
