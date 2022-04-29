@@ -1,7 +1,7 @@
 {% load static %}
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <a href="{% url 'shop:product_list' %}" class="brand-link">
       <img src="{% static 'registration/adminlte/assets/img/AdminLTELogo.png' %}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
       <span class="brand-text font-weight-light">مگا گیم</span>
@@ -22,12 +22,38 @@
       <!-- Sidebar Menu -->
       {% if user.is_superuser %}
       <nav class="mt-2">
+       
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
+               <li class="nav-item">
+                <a href="{% url 'shop:product_list' %}" class="nav-link">
+                  <i class="fas fa-home"></i>
+                  <span>
+                    خانه
+                  </span>
+                </a>
+              </li>  
+              <li class="nav-item">
+                <a href="{% url 'account:home' %}" class="nav-link">
+                  <i class="fas fa-user-cog"></i>
+                  <span>
+                    صفحه اصلی مدیریت
+                  </span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{% url 'account:profile' %}" class="nav-link">
+                  <i class="nav-icon fas fa-th"></i>
+                  <p>
+                    پروفایل
+                    
+                  </p>
+                </a>
+              </li>   
           <li class="nav-item has-treeview ">
             <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <i class="fas fa-box"></i>
               <p>
                 محصولات
                 <i class="right fas fa-angle-left"></i>
@@ -49,18 +75,10 @@
               
             </ul>
           </li>
-          <li class="nav-item">
-            <a href="{% url 'account:profile' %}" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                پروفایل
-                <span class="right badge badge-danger">جدید</span>
-              </p>
-            </a>
-          </li>
+          
           <li class="nav-item has-treeview ">
             <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <i class="fas fa-boxes"></i>
               <p>
                 دسته بندی ها
                 <i class="right fas fa-angle-left"></i>
@@ -108,7 +126,7 @@
           </li>
           <li class="nav-item">
             <a href="{% url 'account:order-list' %}" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="fas fa-truck"></i>
               <p>
                 لیست سفارشات
               </p>
@@ -116,22 +134,55 @@
           </li>
           <li class="nav-item">
             <a href="/admin" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="fas fa-tasks"></i>
               <p>
                 مدیریت پیشرفته
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="{% url 'account:logout' %}" class="nav-link">
+              <i class="fas fa-sign-out-alt"></i>
+              <span>
+                خروج از حساب کاربری
+              </span>
+            </a>
+          </li>
           
          
         </ul>
+        
       </nav>
       {% else %}
+      <li class="nav-item">
+        <a href="{% url 'shop:product_list' %}" class="nav-link">
+          <i class="fas fa-home"></i>
+          <span>
+            خانه
+          </span>
+        </a>
+      </li>
       <li class="nav-item">
         <a href="{% url 'account:profile' %}" class="nav-link">
           <i class="nav-icon fas fa-th"></i>
           <span>
-            پروفایل
+            ویرایش اطلاعات حساب
+          </span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="{% url 'account:order-history-user' %}" class="nav-link">
+          <i class="fas fa-truck"></i>
+          <span>
+            سفارشات شما
+          </span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="{% url 'account:logout' %}" class="nav-link">
+          <i class="fas fa-sign-out-alt"></i>
+          <span>
+            خروج از حساب کاربری
           </span>
         </a>
       </li>

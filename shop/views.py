@@ -6,8 +6,9 @@ from .recommender import Recommender
 from django.db.models import Q
 from comments.forms import CommentForm
 from django.core.mail import EmailMessage
-
-
+import json
+import urllib
+from django.conf import settings
 
 
 
@@ -29,25 +30,38 @@ def product_detail(request , slug):
 	recommended_products = r.suggest_product_for([product] , 4)
 	triats = Attribute.objects.filter(attribute=product)
 	form = CartAddProductForm()
-	product_comments = product.comments.all()
+	product_comments = product.comments.order_by('-created_on')
 	if request.method == "POST":
 		comment_form = CommentForm(request.POST)
 		if comment_form.is_valid():
-			new_comment = comment_form.save(commit=False)
-			new_comment.product = product
-			new_comment.user = request.user
-			new_comment.save()
-			if request.user.email:
-				mail_subject = "دریافت دیدگاه شما "
-			message = """دیدگاه شما دریافت شد و به زودی به آن پاسخ میدهیم با تشکر از شما
-			مگا گیم
-			"""
-			email = EmailMessage(
-						mail_subject,
-						message,
-						to=[request.user.email]
-			)
-			email.send()
+			''' Begin reCAPTCHA validation '''
+			recaptcha_response = request.POST.get('g-recaptcha-response')
+			url = 'https://www.google.com/recaptcha/api/siteverify'
+			values = {
+				'secret': settings.GOOGLE_RECAPTCHA_SECRET_KEY,
+				'response': recaptcha_response
+			}
+			data = urllib.parse.urlencode(values).encode()
+			req =  urllib.request.Request(url, data=data)
+			response = urllib.request.urlopen(req)
+			result = json.loads(response.read().decode())
+			''' End reCAPTCHA validation '''
+			if result['success']:
+				new_comment = comment_form.save(commit=False)
+				new_comment.product = product
+				new_comment.user = request.user
+				new_comment.save()
+				if request.user.email:
+					mail_subject = "دریافت دیدگاه شما "
+				message = """دیدگاه شما دریافت شد و به زودی به آن پاسخ میدهیم با تشکر از شما
+				مگا گیم
+				"""
+				email = EmailMessage(
+							mail_subject,
+							message,
+							to=[request.user.email]
+				)
+				email.send()
 	else:
 		comment_form = CommentForm()
 
