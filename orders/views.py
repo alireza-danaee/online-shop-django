@@ -3,7 +3,7 @@ from .forms import OrderCreateForm
 from .models import OrderItem
 from cart.cart import Cart
 from .tasks import order_created
-
+from django.urls import reverse
 
 
 
@@ -21,7 +21,7 @@ def order_create(request):
             cart.clear()
             order_created.delay(order.id)
             request.session['order_id'] = order.id 
-            return redirect('zarinpal:request')
+            return redirect(reverse('zarinpal:request'))
     else:
         form = OrderCreateForm()
     return render(request , 'orders/create_order.html' , {'form' : form , 'cart':cart})

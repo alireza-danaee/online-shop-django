@@ -22,7 +22,7 @@ class ProductList(ListView):
 		context['offers'] = Product.objects.filter(pishnahad=True).order_by('?')[:3]
 		context['form'] = CartAddProductForm()
 		return context
-
+		
 
 def product_detail(request , slug):
 	product = get_object_or_404(Product , slug=slug)
