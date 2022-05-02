@@ -42,7 +42,7 @@
                 <th>قیمت</th>
                 <th>تعداد</th>
                 <th>آدرس</th>
-                <th>مشتری</th>
+                <th>نام خریدار</th>
                 <th>پرداخت شده؟</th>
                 
                 
@@ -51,7 +51,7 @@
             <tbody>
                 {% for order in order_detail %}
               <tr>
-                <td><a href="#">
+                <td><a >
                   {{order.product.name}}
                 </a></td>
                 <td>{{order.product.price}}</td>
@@ -60,14 +60,13 @@
                 <td>{{order.user.get_full_name}}</td>
                 
                 <td>
-                    {% if order.paid %}
+                    {% if order.order.paid %}
                     <i class="fa fa-check-circle " style="color: green;" aria-hidden="true"></i>
                     {% else %}
                     <i class="fa fa-window-close" style="color: red;" aria-hidden="true"></i>
                     {% endif %}
                 </td>
-                <td>{{order.created}}</td>
-                <td>{{order.updated}}</td>
+                
                 
                 
               </tr>
