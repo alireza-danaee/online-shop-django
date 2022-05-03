@@ -1,6 +1,6 @@
 from django.db import models
 from django.urls import reverse
-
+from ckeditor.fields import RichTextField
 # Create your models here.
 
 
@@ -31,7 +31,7 @@ class Product(models.Model):
     )
     name = models.CharField(max_length=100,verbose_name="نام محصول")
     slug = models.SlugField(max_length=100 , unique=True ,verbose_name="آدرس محصول")
-    description = models.TextField(verbose_name="توضیحات محصول")
+    description = RichTextField(verbose_name="توضیحات محصول")
     image = models.ImageField(upload_to='products/%Y/%m/%d',verbose_name="تصویر اصلی محصول")
     image2 = models.ImageField(upload_to='products/%Y/%m/%d',verbose_name="تصویر جانبی 1 محصول")
     image3 = models.ImageField(upload_to='products/%Y/%m/%d',verbose_name="تصویر جانبی 2 محصول")

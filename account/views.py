@@ -41,8 +41,8 @@ class Home(LoginRequiredMixin,ListView):
 		context['all_coupons'] =  Coupons.objects.all().count()
 		return context
 
-
 # ---------------------- PRODUCTS -------------------------
+
 class ProductListAdmin(LoginRequiredMixin,AccessMixin,ListView):
 	queryset = Product.objects.all()
 	template_name = 'registration/product/product_list.html'
@@ -62,7 +62,6 @@ class ProductDelete(ProductAccessMixin,DeleteView):
 	model = Product
 	success_url = reverse_lazy('account:product-list')
 	template_name = 'registration/product/product_delete.html'
-
 
 # ---------------------- CATEGORIES -------------------------
 
@@ -86,6 +85,7 @@ class CategoryDelete(ProductAccessMixin,DeleteView):
 	success_url = reverse_lazy('account:category-list')
 	template_name = 'registration/category/category_delete.html'
 
+# ---------------------- COUPON -------------------------
 
 class CouponListAdmin(LoginRequiredMixin,CouponAccessMixin,ListView):
 	queryset = Coupons.objects.all()
@@ -120,7 +120,8 @@ def order_history_admin(request ,id ):
 		'order_detail':order,
 	}
 	return render(request,'registration/order/order_history_admin.html',context)
-	
+
+# ---------------------- AUTH -------------------------
 
 class Profile(UpdateView):
 	model = User

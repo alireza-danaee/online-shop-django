@@ -20,7 +20,7 @@ description = "توضیحات مربوط به تراکنش را در این قس
 email = 'email@example.com'  # Optional
 mobile = '09123456789'  # Optional
 # Important: need to edit for realy server.
-CallbackURL = 'http://localhost:7000/zarinpal/verify/'
+CallbackURL = 'http://127.0.0.1:7000/zarinpal/verify/'
 
 
 def send_request(request):

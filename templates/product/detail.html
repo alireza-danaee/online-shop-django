@@ -75,14 +75,13 @@
 					<br>
 					<hr>
 					<div>
-					<h4 style="float: right;">توضیحات</h4>
-					</div>
-					<br>
-					<hr>
-					<div>
-					<p style="float: right;" dir="rtl">{{product.description|safe}}</p>
+					<h4 class="text-right">توضیحات:</h4>
 					</div>
 					
+					<div class="text-right">
+					<p class="text-right" dir="rtl">{{product.description|safe}}</p>
+					</div>
+					<hr>
 					<form action="{% url 'cart:cart_add' product.id %}" method="POST">{% csrf_token %}
 					{% if product.status == 'a' or product.status == 'c' %}
 					
