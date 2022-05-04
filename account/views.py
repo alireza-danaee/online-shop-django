@@ -100,11 +100,7 @@ class CouponCreate(LoginRequiredMixin,CouponAccessMixin,CreateView):
 class OrderList(LoginRequiredMixin,ListView):
 	queryset = Order.objects.all()
 	template_name = 'registration/order/order_list.html'
-	def get_context_data(self , **kwargs):
-		context = super().get_context_data(**kwargs)
-		context['order_id'] = OrderItem.objects.filter(user_id=self.request.user.id)
-		return context
-
+	
 
 def order_history_user(request ):
 	order = OrderItem.objects.filter(user_id=request.user.id)
@@ -112,14 +108,6 @@ def order_history_user(request ):
 		'order_detail':order,
 	}
 	return render(request,'registration/order/order_detail.html',context)
-
-		
-def order_history_admin(request ,id ):
-	order = OrderItem.objects.filter(user_id=id)
-	context = {
-		'order_detail':order,
-	}
-	return render(request,'registration/order/order_history_admin.html',context)
 
 # ---------------------- AUTH -------------------------
 
@@ -170,7 +158,7 @@ class Register(CreateView):
 						mail_subject, message, to=[to_email]
 			)
 			email.send()
-			return HttpResponse('لطفا آدرس ایمیل خود را برای تکمیل ثبت نام تایید کنید')
+			return render(self.request ,'registration/complete_email_register.html')
 		else:
 			messages.error(self.request, 'Invalid reCAPTCHA. Please try again.')
 		return redirect("register")
@@ -185,7 +173,7 @@ def activate(request, uidb64, token):
 		user.is_active = True
 		user.save()
 		
-		return HttpResponse('باتشکر از شما برای تایید ایمیل  اکنون میتوانید به حساب کاربری خود وارد شوید <a href="/login">ورود </a>')
+		return render(request ,'registration/after_confirm_email_register.html')
 	else:
 		return HttpResponse('لینک فعال سازی نامعتبر است!')
 

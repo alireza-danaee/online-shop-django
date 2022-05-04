@@ -40,8 +40,16 @@ class Order(models.Model):
         ('گلستان','گلستان'),
         ('گیلان','گیلان'),
         ('یزد','یزد'),
-        
-        
+    )
+    STATUS = (
+        ('New', 'ثبت سفارش'),
+        ('Accepted', 'تایید سفارش'),
+        ('Preparing', 'آماده سازی سفارش'),
+        ('OutCompany', 'خروج از مرکز پردازش'),
+        ('InPostOffice', 'تحویل به پست'),
+        ('OnShipping', 'مرکز مبادلات پست'),
+        ('Arrive', 'تحویل به مشتری'),
+        ('Canceled', 'لغو شده'),
     )
        
     first_name = models.CharField(max_length=100 , verbose_name='نام')
@@ -56,7 +64,7 @@ class Order(models.Model):
     paid = models.BooleanField(default=False ,verbose_name='پرداخت شده')
     state = models.CharField(max_length=100 , choices=STATE_CHOICES , verbose_name='استان')
     description_user = models.TextField(null=True, blank=True , verbose_name='توضیحات کاربر')
-
+    status = models.CharField(max_length=30, choices=STATUS, default='New', verbose_name='وضعیت')
     
     class Meta:
         ordering = ('-created',)

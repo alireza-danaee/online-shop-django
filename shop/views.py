@@ -26,8 +26,6 @@ class ProductList(ListView):
 
 def product_detail(request , slug):
 	product = get_object_or_404(Product , slug=slug)
-	r = Recommender()
-	recommended_products = r.suggest_product_for([product] , 4)
 	triats = Attribute.objects.filter(attribute=product)
 	form = CartAddProductForm()
 	product_comments = product.comments.filter(active=True).order_by('-created_on')
@@ -67,7 +65,6 @@ def product_detail(request , slug):
 
 	context = {
 		"product":product,
-		"recommended_products":recommended_products,
 		"form":form,
 		"triats":triats,
 		"comment_form":CommentForm(),

@@ -44,12 +44,13 @@
                 <th>آدرس</th>
                 <th>نام خریدار</th>
                 <th>پرداخت شده؟</th>
-                
+                <th>وضعیت سفارش</th>
                 
               </tr>
             </thead>
             <tbody>
                 {% for order in order_detail %}
+                {% if order.order.paid %}
               <tr>
                 <td><a >
                   {{order.product.name}}
@@ -60,16 +61,12 @@
                 <td>{{order.user.get_full_name}}</td>
                 
                 <td>
-                    {% if order.order.paid %}
                     <i class="fa fa-check-circle " style="color: green;" aria-hidden="true"></i>
-                    {% else %}
-                    <i class="fa fa-window-close" style="color: red;" aria-hidden="true"></i>
-                    {% endif %}
-                </td>
-                
-                
-                
-              </tr>
+            
+                  </td>
+                  <td>{{order.order.get_status_display}}</td>
+                </tr>
+                {% endif %}
               {% endfor %}
             </tbody>
           </table>

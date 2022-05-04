@@ -40,7 +40,6 @@ urlpatterns += [
     #-----------------------ORDERS---------------------------
     path ('order/list/' ,views.OrderList.as_view() , name = 'order-list'),
     path ('order/history/' ,views.order_history_user , name = 'order-history-user'),
-    path ('order/history/<int:order_user_id>/' ,views.order_history_admin , name = 'order-history-admin'),
 
     path ('profile/' ,views.Profile.as_view() , name = 'profile'),
 ]
