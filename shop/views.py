@@ -2,7 +2,6 @@ from django.shortcuts import render ,get_object_or_404
 from django.views.generic import DetailView , ListView
 from .models import Product , Category,Attribute
 from cart.forms import CartAddProductForm
-from .recommender import Recommender
 from django.db.models import Q
 from comments.forms import CommentForm
 from django.core.mail import EmailMessage
