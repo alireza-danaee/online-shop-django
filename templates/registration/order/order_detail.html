@@ -54,7 +54,7 @@
                 <td><a >
                   {{order.product.name}}
                 </a></td>
-                <td>{{order.product.price}}</td>
+                <td>{{ order.product.price|intcomma }} تومان</td>
                 <td>{{order.quantity}}</td>
                 <td>{{order.order.address}}</td>
                 <td>{{order.user.get_full_name}}</td>

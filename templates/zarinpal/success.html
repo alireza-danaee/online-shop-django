@@ -2,10 +2,23 @@
 
 
 {% block content %}
-
-<h1 class="text-success">پرداخت شما انجام شد</h1>
-
-<p>your id is : {{id}}</p>
+<div class="container">
+<div class="row" dir="rtl">
+    <div class="col">
+        <div class="card">
+            <div class="card-header text-center">
+              ثبت سفارش
+            </div>
+            <div class="card-body">
+              <h3 class="card-title text-center text-success">{{user.get_full_name}} عزیز سفارش شما ثبت شد.</h3>
+              <p class="card-text text-center">آیدی سفارش شما : {{id}}</p>
+              <p class="card-text text-center">شما میتوانید در پنل کاربری لیست سفارشات خود را مشاهده کنید</p>
+              <a href="{% url 'account:order-history-user' %}" class="btn btn-primary text-center">لیست سفارشات من</a>
+            </div>
+          </div>
+    </div>
+</div>
+</div>
 
 
 {% endblock %}

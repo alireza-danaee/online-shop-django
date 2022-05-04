@@ -30,7 +30,7 @@ def product_detail(request , slug):
 	recommended_products = r.suggest_product_for([product] , 4)
 	triats = Attribute.objects.filter(attribute=product)
 	form = CartAddProductForm()
-	product_comments = product.comments.order_by('-created_on')
+	product_comments = product.comments.filter(active=True).order_by('-created_on')
 	if request.method == "POST":
 		comment_form = CommentForm(request.POST)
 		if comment_form.is_valid():

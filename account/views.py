@@ -6,7 +6,7 @@ from .mixins import AccessMixin , ProductAccessMixin , CategoryAccessMixin,Coupo
 from shop.models import Product ,Category
 from coupons.models import Coupons
 from orders.models import Order , OrderItem
-from account.models import User
+from django.contrib.auth import get_user_model
 from django.http import HttpResponse
 from .forms import SignupForm
 from django.contrib.sites.shortcuts import get_current_site
@@ -35,7 +35,7 @@ class Home(LoginRequiredMixin,ListView):
 	template_name = 'registration/home.html'
 	def get_context_data(self , **kwargs):
 		context = super().get_context_data(**kwargs)
-		context['all_users'] =  User.objects.all().count()
+		context['all_users'] =  get_user_model().objects.all().count()
 		context['all_orders'] =  Order.objects.all().count()
 		context['all_products'] =  Product.objects.all().count()
 		context['all_coupons'] =  Coupons.objects.all().count()
@@ -124,12 +124,12 @@ def order_history_admin(request ,id ):
 # ---------------------- AUTH -------------------------
 
 class Profile(UpdateView):
-	model = User
+	model = get_user_model()
 	fields = ['username','first_name','last_name','email']
 	template_name = 'registration/profile.html'
 	success_url = reverse_lazy('account:profile')
 	def get_object(self):
-		return User.objects.get(pk = self.request.user.pk)
+		return get_user_model().objects.get(pk = self.request.user.pk)
 
 
 class MyLoginView(LoginView):
@@ -178,8 +178,8 @@ class Register(CreateView):
 def activate(request, uidb64, token):
 	try:
 		uid = force_str(urlsafe_base64_decode(uidb64))
-		user = User.objects.get(pk=uid)
-	except(TypeError, ValueError, OverflowError, User.DoesNotExist):
+		user = get_user_model().objects.get(pk=uid)
+	except(TypeError, ValueError, OverflowError, get_user_model().DoesNotExist):
 		user = None
 	if user is not None and account_activation_token.check_token(user, token):
 		user.is_active = True
@@ -208,7 +208,7 @@ def password_reset_request(request):
 			''' End reCAPTCHA validation '''
 			if result['success']:
 				data = password_reset_form.cleaned_data['email']
-				associated_users = User.objects.filter(Q(email=data))
+				associated_users = get_user_model().objects.filter(Q(email=data))
 				if associated_users.exists():
 					for user in associated_users:
 						subject = "Password Reset Requested"

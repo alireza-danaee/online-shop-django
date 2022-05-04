@@ -28,6 +28,7 @@ def send_request(request):
     order_id = request.session.get('order_id')
     order = get_object_or_404(Order,id=order_id)
     total_cost = order.get_total_cost()
+    total_cost = total_cost * 10
     req_data = {
         "merchant_id": MERCHANT,
         "amount": total_cost,
@@ -65,24 +66,15 @@ def verify(request):
         if len(req.json()['errors']) == 0:
             t_status = req.json()['data']['code']
             if t_status == 100:
-                # return HttpResponse('Transaction success.\nRefID: ' + str(
-                #     req.json()['data']['ref_id']
-                # ))
                 order.paid = True
                 order.save()
                 return render(request,"zarinpal/success.html",{"id":str(req.json()['data']['ref_id'])})
             elif t_status == 101:
-                return HttpResponse('Transaction submitted : ' + str(
-                    req.json()['data']['message']
-                ))
+                return render(request,"zarinpal/submited.html",{"status":str(req.json()['data']['message'])})
             else:
-                return HttpResponse('Transaction failed.\nStatus: ' + str(
-                    req.json()['data']['message']
-                ))
+                return render(request,"zarinpal/failed.html",{"status":str(req.json()['data']['message'])})
         else:
-            e_code = req.json()['errors']['code']
-            e_message = req.json()['errors']['message']
-            return HttpResponse(f"Error code: {e_code}, Error Message: {e_message}")
+            return render(request,"zarinpal/error.html")
     else:
-        return HttpResponse('Transaction failed or canceled by user')
+        return render(request,"zarinpal/cancel.html")
        

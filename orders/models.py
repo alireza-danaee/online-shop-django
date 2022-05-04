@@ -1,6 +1,7 @@
 from django.db import models
 from shop.models import Product
 from account.models import User
+from extensions.utils import jalali_converter
 # Create your models here.
 
 
@@ -64,8 +65,16 @@ class Order(models.Model):
 
     def get_total_cost(self):
         return sum(item.get_cost() for item in self.items.all())
+    
+    def j_created(self):
+        return jalali_converter(self.created)
 
+    j_created.short_description = 'تاریخ ثبت'
 
+    def j_updated(self):
+        return jalali_converter(self.updated)
+
+    j_updated.short_description = 'تاریخ بروزرسانی'
 
 
 class OrderItem(models.Model):

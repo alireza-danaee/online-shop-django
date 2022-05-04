@@ -168,7 +168,8 @@
 		<h2 class="mb-5 text-right">:نظرات</h2>
 		{% for comment in comments %}
 			<div class="border-bottom mb-3" >
-				<h5 class="mb-3 text-right" >{{ comment.user.get_full_name }}</h5>
+				<h5 class="mb-3 text-right" >{{ comment.user.get_full_name }}  (<small class="text-right" >{{comment.j_created_on}}</small>)</h5>
+				
 				<div class="text-right">
 				<p >{{ comment.text|linebreaks }}</p>
 				</div>

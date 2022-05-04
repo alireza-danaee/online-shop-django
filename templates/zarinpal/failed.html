@@ -3,7 +3,22 @@
 
 {% block content %}
 
-<h1 class="text-warning">پرداخت شما انجام نشد</h1>
+<div class="container">
+    <div class="row" dir="rtl">
+        <div class="col">
+            <div class="card">
+                <div class="card-header text-center">
+                  عدم ثبت سفارش
+                </div>
+                <div class="card-body">
+                  <h3 class="card-title text-center text-warning">{{user.get_full_name}} عزیز پرداخت شما ثبت نشد.</h3>
+                  <p class="card-text text-center">اطلاعات: {{status}}</p>
+                  <a href="{% url 'shop:product_list' %}" class="btn btn-primary text-center">بازگشت به صفحه اصلی</a>
+                </div>
+              </div>
+        </div>
+    </div>
+    </div>
 
 
 {% endblock %}

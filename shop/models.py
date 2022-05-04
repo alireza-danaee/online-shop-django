@@ -21,7 +21,6 @@ class Category(models.Model):
         return reverse('account:category-list')
 
 
-
 class Product(models.Model):
     CHOOSE_STATUS = (
         ('u' , 'ناموجود'),         # unavailble
@@ -59,7 +58,7 @@ class Product(models.Model):
 class Attribute(models.Model):
     name = models.CharField(max_length=256,verbose_name="نام ویژگی")
     value = models.CharField(max_length=256,verbose_name="مقدار ویژگی")
-    attribute = models.ForeignKey(Product , related_name="triat" , on_delete=models.CASCADE)
+    attribute = models.ForeignKey(Product , related_name="triat" , on_delete=models.CASCADE,verbose_name="محصول")
 
     class Meta:
         verbose_name = "ویژگی"
