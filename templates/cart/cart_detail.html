@@ -55,6 +55,7 @@
                         <tbody>
                             {% for item in cart %}
                             {% with product=item.product %}
+                            
                             <tr>
                                 <td class="thumbnail-img">
                                     <a href="#">
@@ -71,7 +72,8 @@
                                 </td>
                                 <td class="quantity-box">
                                     <form action="{% url 'cart:cart_add' product.id %}" method="POST">{% csrf_token %}
-                                    {{item.update_quantity_form.quantity|add_class:"class_quantity_1"}}
+                                    <!-- {{item.update_quantity_form.quantity|add_class:"class_quantity_1"}} -->
+                                    <input type="number" id="quantity" name="quantity" min="1" max="{{product.Inventory}}" class="class_quantity_1" value="{{item.quantity}}">
                                     {{item.update_quantity_form.override}}
                                     <button class="btn btn-primary" type="submit" > <i class="fa fa-refresh" aria-hidden="true"></i></button>
                                     </form>

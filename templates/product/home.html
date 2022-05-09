@@ -93,12 +93,22 @@
                                 <p><a  class="text-dark">{{product.price|intcomma}} تومان</a></p>
                                 
                             </div>
-                            {% if product.status == 'a' %}
-                            <p class="badge bg-success text-light" style="font-size: 16px;">موجود</p>
-                            {% elif product.status == 'u' %}
-                            <p class="badge bg-danger text-light" style="font-size: 16px;">ناموجود</p>
+                            <div>
+                            {% if product.Inventory == 1 %}
+                            <p class="badge bg-warning text-light">تنها 1 عدد در انبار موجود است</p>
+                            {% elif product.Inventory > 1 %}
+                            <p class="badge bg-success text-light">{{product.Inventory}} عدد در انبار موجود است</p>
                             {% else %}
+                            <p class="badge bg-danger text-light">در انبار موجود نمیباشد</p>
+                            {% endif %}
+                            </div>
+                            {% if product.status == 'a' and product.Inventory > 0 %}
+
+                                    <p class="badge bg-success text-light" style="font-size: 16px;">موجود</p>
+                            {% elif product.status == 'c' and product.Inventory > 0 %}
                             <p class="badge bg-warning text-light" style="font-size: 16px;">قابل سفارش</p>
+                            {% else %}
+                            <p class="badge bg-danger text-light" style="font-size: 16px;">ناموجود</p>
                             {% endif %}
                         </div>
 
@@ -108,11 +118,13 @@
                                 <a href="{% url 'shop:product_detail' product.slug %}">
                                 <button type="button" class="btn btn-dark mb-3">مشاهده</button>
                                 </a>
-                                {% if product.status == 'a' or product.status == 'c' %}
+                                {% if product.Inventory > 0 and product.status == 'a' or product.Inventory > 0 and product.status == 'c'%}
+                                
                                 <form action="{% url 'cart:cart_add' product.id %}" method="POST">{% csrf_token %}
                                     <div class="form-group quantity-box">
-                                        <!-- <label class="control-label">تعداد</label> -->
-                                        {{form.quantity|attr:"value:1"|add_class:"class_quantity_1"}}
+                                        <!-- <label class="control-label" for="tentacles">تعداد</label> -->
+                                        <input type="number" id="quantity" name="quantity" min="1" max="{{product.Inventory}}" class="class_quantity_1" value="1">
+                                        <!-- {{form.quantity|attr:"value:1"|add_class:"class_quantity_1"}} -->
                                         <button type="submit" class="btn btn-success">افزودن به سبد خرید</button>
                                     </div>
                                 </form>

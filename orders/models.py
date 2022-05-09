@@ -2,6 +2,7 @@ from django.db import models
 from shop.models import Product
 from account.models import User
 from extensions.utils import jalali_converter
+from shop.models import Product
 # Create your models here.
 
 
@@ -91,19 +92,15 @@ class OrderItem(models.Model):
     product = models.ForeignKey(Product, related_name='order_items', on_delete=models.CASCADE,verbose_name='محصول')
     price = models.PositiveIntegerField(verbose_name='قیمت')
     quantity = models.PositiveIntegerField(default=1 , verbose_name='تعداد')
-
+    created = models.DateTimeField(auto_now_add=True , verbose_name='تاریخ ثبت')
+    class Meta:
+        verbose_name = 'سفارش کالا'
+        verbose_name_plural = 'سفارشات کالا'
+    
     def __str__(self):
         return '{}'.format(self.id)
 
     def get_cost(self):
         return self.price * self.quantity
-
-    class Meta:
-        verbose_name = 'سفارش کالا'
-        verbose_name_plural = 'سفارشات کالا'
-
-
-
-
-
-
+        
+        

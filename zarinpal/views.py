@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect ,render
-from orders.models import Order
+from orders.models import Order, OrderItem
 import requests
 import json
 from django.core.mail import EmailMessage
@@ -21,7 +21,7 @@ description = "توضیحات مربوط به تراکنش را در این قس
 email = 'email@example.com'  # Optional
 mobile = '09123456789'  # Optional
 # Important: need to edit for realy server.
-CallbackURL = 'http://127.0.0.1:7000/zarinpal/verify/'
+CallbackURL = 'https://mega-game.ir/zarinpal/verify/'
 
 
 def send_request(request):
@@ -29,7 +29,7 @@ def send_request(request):
 	order_id = request.session.get('order_id')
 	order = get_object_or_404(Order,id=order_id)
 	total_cost = order.get_total_cost()
-	total_cost = total_cost * 10
+	total_cost = total_cost * 10 #Change Rial to Toman
 	req_data = {
 		"merchant_id": MERCHANT,
 		"amount": total_cost,

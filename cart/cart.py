@@ -12,12 +12,12 @@ class Cart:
             cart = self.session[settings.CART_SESSION_ID] = {}
         
         self.cart = cart
-
+        
     # Add to Cart
     def add(self,product , quantity=0 , override_quantity=False):
         product_id = str(product.id)
         if product_id not in self.cart:
-            self.cart[product_id] = {'quantity':0 , 'price':product.price}
+            self.cart[product_id] = {'quantity':0 , 'price':product.price,'inven':product.Inventory}
         if override_quantity:
             self.cart[product_id]['quantity'] = quantity
         else:
@@ -28,14 +28,12 @@ class Cart:
     def save(self):
         self.session.modified = True
 
-    
     # Remove From Cart
     def remove(self , product):
         product_id = str(product.id)
         if product_id in self.cart:
             del self.cart[product_id]
             self.save()
-
 
     def __iter__(self):
         product_ids = self.cart.keys()
@@ -67,17 +65,11 @@ class Cart:
                 pass
         return None
 
-    
     def get_discount(self):
         if self.coupon:
             coupon_price = (self.coupon.discount / Decimal(100)) * self.get_total_price()
             return int(coupon_price)
         return Decimal(0)
 
-
     def get_total_price_after_discount(self):
         return self.get_total_price() - self.get_discount()
-
-
-
-        
